@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v4.1.0...v4.2.0) (2025-01-07)
+
+
+### Features
+
+* update native SDKs ([#135](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/issues/135)) ([2bede6f](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/2bede6fc837aa55b00f7821892417ad4fad1accd))
+
 ## [4.1.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v4.0.2...v4.1.0) (2024-11-13)
 
 
