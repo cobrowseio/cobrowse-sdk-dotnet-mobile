@@ -47,12 +47,10 @@
         <file src="Android/CborJava.Android/bin/Release/net8.0-android/CborJava.Android.xml" target="lib\net8.0-android34.0" />
 
         <file src="Android/CobrowseIO.Android/bin/Release/net8.0-android/cobrowse-sdk-android-*.aar" target="lib\net8.0-android34.0" />
-        <file src="Android/CobrowseIO.Android/bin/Release/net8.0-android/Cobrowse.IO.Android.aar" target="lib\net8.0-android34.0" />
         <file src="Android/CobrowseIO.Android/bin/Release/net8.0-android/Cobrowse.IO.Android.dll" target="lib\net8.0-android34.0" />
         <file src="Android/CobrowseIO.Android/bin/Release/net8.0-android/Cobrowse.IO.Android.pdb" target="lib\net8.0-android34.0" />
         <file src="Android/CobrowseIO.Android/bin/Release/net8.0-android/Cobrowse.IO.Android.xml" target="lib\net8.0-android34.0" />
 
-        <file src="SDK/CobrowseIO/bin/Release/net8.0-android/Cobrowse.IO.aar" target="lib\net8.0-android34.0" />
         <file src="SDK/CobrowseIO/bin/Release/net8.0-android/Cobrowse.IO.dll" target="lib\net8.0-android34.0" />
         <file src="SDK/CobrowseIO/bin/Release/net8.0-android/Cobrowse.IO.pdb" target="lib\net8.0-android34.0" />
         <file src="SDK/CobrowseIO/bin/Release/net8.0-android/Cobrowse.IO.xml" target="lib\net8.0-android34.0" />
@@ -60,7 +58,6 @@
         <!-- iOS-specific files -->
         <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.dll" target="lib\net8.0-ios18.0"/>
         <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.pdb" target="lib\net8.0-ios18.0"/>
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.stamp" target="lib\net8.0-ios18.0"/>
         <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.zip" target="lib\net8.0-ios18.0"/>
 
         <file src="SDK/CobrowseIO/bin/Release/net8.0-ios/Cobrowse.IO.dll" target="lib\net8.0-ios18.0"/>
