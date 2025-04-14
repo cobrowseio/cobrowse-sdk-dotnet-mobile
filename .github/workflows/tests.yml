@@ -51,7 +51,6 @@ jobs:
 
     - name: Create NuGet packages
       run: |
-        nuget pack CobrowseIO.DotNet.iOS.AppExtension.nuspec
         nuget pack CobrowseIO.DotNet.nuspec
 
     - name: Copy nupkg files to artifacts
