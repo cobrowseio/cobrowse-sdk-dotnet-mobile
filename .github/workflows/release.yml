@@ -3,12 +3,12 @@ name: Build, pack NuGet packages, publish to NuGet.org
 on:
   push:
     tags:
-      - 'v4.[0-9]+.[0-9]+'
+      - 'v5.[0-9]+.[0-9]+'
 
 jobs:
   build:
 
-    runs-on: macos-13
+    runs-on: macos-15
 
     steps:
     - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
 
     - name: Select Xcode version
       env:
-        XCODE_SELECTED_PATH: "/Applications/Xcode_15.0.1.app"
+        XCODE_SELECTED_PATH: "/Applications/Xcode_16.2.app"
       shell: bash
       run: sudo xcode-select --switch ${XCODE_SELECTED_PATH}
 
@@ -45,25 +45,21 @@ jobs:
         dotnet build Android/NumbersJava.Android/NumbersJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CborJava.Android/CborJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CobrowseIO.Android/CobrowseIO.Android.csproj --configuration "Release" --no-dependencies --no-restore
-        dotnet build iOS/CobrowseIO.AppExtension.iOS/CobrowseIO.AppExtension.iOS.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build SDK/CobrowseIO/CobrowseIO.csproj --configuration "Release" --no-dependencies --no-restore
 
     - name: Create NuGet packages
       run: |
-        nuget pack CobrowseIO.DotNet.iOS.AppExtension.nuspec
-        nuget pack CobrowseIO.DotNet.nuspec
+        dotnet pack SDK/CobrowseIO/CobrowseIO.csproj /p:NuspecFile=../../CobrowseIO.DotNet.nuspec --no-build
 
     - name: Copy nupkg files to artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         path: |
-          CobrowseIO.DotNet.iOS.AppExtension.*.nupkg
-          CobrowseIO.DotNet.*.nupkg
+          SDK/CobrowseIO/bin/Release/CobrowseIO.DotNet.*.nupkg
         retention-days: 7
         if-no-files-found: error
 
     - name: Push nupkg files to NuGet.org
       run: |
-        nuget push CobrowseIO.DotNet.iOS.AppExtension.4.*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_PUSH_TOKEN }} -SkipDuplicate
-        nuget push CobrowseIO.DotNet.4.*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey ${{ secrets.NUGET_PUSH_TOKEN }} -SkipDuplicate
+        dotnet nuget push CobrowseIO.DotNet.4.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_PUSH_TOKEN }} --skip-duplicate
