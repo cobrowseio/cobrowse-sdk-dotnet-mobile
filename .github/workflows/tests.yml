@@ -2,12 +2,14 @@ name: Build and pack NuGet packages
 
 on:
   push:
-    branches: [ dotnet ]
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
 
-    runs-on: macos-13
+    runs-on: macos-15
 
     steps:
     - name: Checkout repository
@@ -21,7 +23,7 @@ jobs:
 
     - name: Select Xcode version
       env:
-        XCODE_SELECTED_PATH: "/Applications/Xcode_15.0.1.app"
+        XCODE_SELECTED_PATH: "/Applications/Xcode_16.2.app"
       shell: bash
       run: sudo xcode-select --switch ${XCODE_SELECTED_PATH}
 
