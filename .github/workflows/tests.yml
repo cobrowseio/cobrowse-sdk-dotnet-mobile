@@ -46,7 +46,6 @@ jobs:
         dotnet build Android/NumbersJava.Android/NumbersJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CborJava.Android/CborJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CobrowseIO.Android/CobrowseIO.Android.csproj --configuration "Release" --no-dependencies --no-restore
-        dotnet build iOS/CobrowseIO.AppExtension.iOS/CobrowseIO.AppExtension.iOS.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build SDK/CobrowseIO/CobrowseIO.csproj --configuration "Release" --no-dependencies --no-restore
 
@@ -59,7 +58,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         path: |
-          CobrowseIO.DotNet.iOS.AppExtension.*.nupkg
           CobrowseIO.DotNet.*.nupkg
         retention-days: 7
         if-no-files-found: error

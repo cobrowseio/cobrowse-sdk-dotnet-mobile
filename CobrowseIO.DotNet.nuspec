@@ -23,7 +23,7 @@
                 <dependency id="Xamarin.AndroidX.ConstraintLayout" version="2.0.4.3" />
                 <dependency id="Xamarin.AndroidX.Lifecycle.Process" version="2.3.1.1" />
             </group>
-            <group targetFramework="net8.0-ios17.0">
+            <group targetFramework="net8.0-ios18.0">
             </group>
             <group targetFramework="net8.0">
             </group>
@@ -58,13 +58,13 @@
         <file src="SDK/CobrowseIO/bin/Release/net8.0-android/Cobrowse.IO.xml" target="lib\net8.0-android34.0" />
 
         <!-- iOS-specific files -->
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.dll" target="lib\net8.0-ios17.0"/>
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.pdb" target="lib\net8.0-ios17.0"/>
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.stamp" target="lib\net8.0-ios17.0"/>
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.zip" target="lib\net8.0-ios17.0"/>
+        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.dll" target="lib\net8.0-ios18.0"/>
+        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.pdb" target="lib\net8.0-ios18.0"/>
+        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.stamp" target="lib\net8.0-ios18.0"/>
+        <file src="iOS/CobrowseIO.iOS/bin/Release/net8.0-ios/Cobrowse.IO.iOS.resources.zip" target="lib\net8.0-ios18.0"/>
 
-        <file src="SDK/CobrowseIO/bin/Release/net8.0-ios/Cobrowse.IO.dll" target="lib\net8.0-ios17.0"/>
-        <file src="SDK/CobrowseIO/bin/Release/net8.0-ios/Cobrowse.IO.pdb" target="lib\net8.0-ios17.0"/>
+        <file src="SDK/CobrowseIO/bin/Release/net8.0-ios/Cobrowse.IO.dll" target="lib\net8.0-ios18.0"/>
+        <file src="SDK/CobrowseIO/bin/Release/net8.0-ios/Cobrowse.IO.pdb" target="lib\net8.0-ios18.0"/>
 
         <!-- Package icon -->
         <file src="icon.png" />
