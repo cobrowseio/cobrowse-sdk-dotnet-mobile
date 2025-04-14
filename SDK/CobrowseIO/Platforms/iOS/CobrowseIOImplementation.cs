@@ -141,16 +141,6 @@ namespace Cobrowse.IO
         }
 
         /// <summary>
-        /// Sets the license.
-        /// </summary>
-        [Obsolete("Use License property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetLicense(string licenseKey)
-        {
-            NativeCobrowseIO.Instance.SetLicense(licenseKey);
-        }
-
-        /// <summary>
         /// Starts the Cobrowse.io.
         /// </summary>
         public void Start()
@@ -168,22 +158,12 @@ namespace Cobrowse.IO
         }
 
         /// <summary>
-        /// Gets or sets Cobrowse.io custom data. 
+        /// Gets or sets Cobrowse.io custom data.
         /// </summary>
-        public IReadOnlyDictionary<string, object> CustomData
+        public IReadOnlyDictionary<string, string> CustomData
         {
             get => NativeCobrowseIO.Instance.CustomData;
             set => NativeCobrowseIO.Instance.CustomData = value;
-        }
-
-        /// <summary>
-        /// Sets Cobrowse.io custom data.
-        /// </summary>
-        [Obsolete("Use CustomData property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetCustomData(IDictionary<string, object> customData)
-        {
-            NativeCobrowseIO.Instance.SetCustomData(customData);
         }
 
         /// <summary>
@@ -215,29 +195,6 @@ namespace Cobrowse.IO
         {
             get => NativeCobrowseIO.Instance.Registration;
             set => NativeCobrowseIO.Instance.Registration = value;
-        }
-
-        /// <summary>
-        /// Launches 6-digits code UI.
-        /// </summary>
-        public void OpenCobrowseUI()
-        {
-            UIViewController? vc = UIApplication.SharedApplication.KeyWindow?.RootViewController;
-            UINavigationController? nc = vc?.GetUINavigationController();
-            nc?.PushViewController(
-                new CobrowseViewController(),
-                animated: true);
-        }
-
-        /// <summary>
-        /// Checks if full-device screen sharing is allowed.
-        /// </summary>
-        [Obsolete("Use 'CobrowseAccessibilityService' directly in the Android project")]
-        public bool CheckCobrowseFullDevice()
-        {
-            // On iOS it is only requered to add a broadcast extension to the app.
-            // Assuming the extension is configured, we always return 'true'.
-            return true;
         }
     }
 }

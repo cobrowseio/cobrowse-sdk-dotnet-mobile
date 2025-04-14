@@ -11,9 +11,9 @@ public partial class MainPage : ContentPage
         Title = "Home";
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private void OnCobrowseClicked(object sender, EventArgs e)
     {
-        CobrowseIO.Instance.OpenCobrowseUI();
+        this.Navigation.PushAsync(new CobrowseCodePage());
     }
 }
 

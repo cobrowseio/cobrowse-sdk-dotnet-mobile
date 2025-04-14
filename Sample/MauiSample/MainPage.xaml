@@ -35,7 +35,7 @@
             <Button
                 Text="Open Cobrowse.io"
                 SemanticProperties.Hint="Open Cobrowse.io 6-digits code screen"
-                Clicked="OnCounterClicked"
+                Clicked="OnCobrowseClicked"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>

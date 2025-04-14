@@ -3,6 +3,7 @@ using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
+using ReplayKit;
 
 namespace Cobrowse.IO.iOS
 {
@@ -155,23 +156,13 @@ namespace Cobrowse.IO.iOS
         [NullAllowed, Export("agent")]
         Agent Agent { get; }
 
-        // -(_Bool)fullDevice;
+        // -(CBIOFullDeviceState) fullDevice;
         [Export("fullDevice")]
-        [Obsolete("Use FullDeviceState instead")]
-        bool FullDevice { get; }
-
-        // -(void)setFullDevice:(BOOL)value callback:(CBErrorSessionBlock _Nullable)callback;
-        [Export("setFullDevice:callback:")]
-        [Obsolete("Use SetFullDeviceState instead")]
-        void SetFullDevice(bool value, [NullAllowed] CBErrorSessionBlock callback);
-
-        // -(CBIOFullDeviceState) fullDeviceState;
-        [Export("fullDeviceState")]
-        FullDeviceState FullDeviceState { get; }
+        FullDeviceState FullDevice { get; }
 
         // -(void)setFullDeviceState:(CBIOFullDeviceState)state callback:(CBErrorSessionBlock _Nullable) callback;
-        [Export("setFullDeviceState:callback:")]
-        void SetFullDeviceState(FullDeviceState state, [NullAllowed] CBErrorSessionBlock callback);
+        [Export("setFullDevice:callback:")]
+        void SetFullDevice(FullDeviceState state, [NullAllowed] CBErrorSessionBlock callback);
 
         // -(CBIORemoteControlState)remoteControl;
         [Export("remoteControl")]
@@ -272,19 +263,6 @@ namespace Cobrowse.IO.iOS
         UIView[] UnredactedViewsForViewController(UIViewController vc);
     }
 
-    // @interface CBIOViewController : UIViewController
-    [BaseType(typeof(UIViewController), Name = "CBIOViewController")]
-    interface CobrowseViewController
-    {
-        // -(instancetype _Nonnull)loadSession:(NSString * _Nonnull)codeOrId;
-        [Export("loadSession:")]
-        CobrowseViewController LoadSession(string codeOrId);
-
-        // -(void)endSession:(id _Nonnull)sender __attribute__((ibaction));
-        [Export("endSession:")]
-        void EndSession(NSObject sender);
-    }
-
     // @protocol CobrowseIORedacted <NSObject>
     /*
 	  Check whether adding [Model] to this declaration is appropriate.
@@ -336,10 +314,10 @@ namespace Cobrowse.IO.iOS
         [Export("api")]
         string Api { get; set; }
 
-        // @property NSDictionary<NSString *,NSObject *> * _Nonnull customData;
+        // @property NSDictionary<NSString *,NSString *> * _Nonnull customData;
         [Export("customData", ArgumentSemantic.Assign)]
         [Internal]
-        NSDictionary<NSString, NSObject> CustomNSDictionaryData { get; set; }
+        NSDictionary<NSString, NSString> CustomNSDictionaryData { get; set; }
 
         // @property NSArray<NSString *> * _Nonnull capabilities;
         [Export("capabilities", ArgumentSemantic.Assign)]
@@ -417,5 +395,11 @@ namespace Cobrowse.IO.iOS
         [Static]
         [Export("onPushNotification:")]
         void OnPushNotification(NSDictionary userInfo);
+    }
+
+    // @interface CobrowseIOReplayKitExtension : RPBroadcastSampleHandler
+    [BaseType(typeof(RPBroadcastSampleHandler))]
+    interface CobrowseIOReplayKitExtension
+    {
     }
 }

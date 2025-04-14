@@ -16,6 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\iOS\CobrowseIO.AppExtension.iOS\CobrowseIO.AppExtension.iOS.csproj" />
+    <ProjectReference Include="..\..\iOS\CobrowseIO.iOS\CobrowseIO.iOS.csproj" />
   </ItemGroup>
 </Project>

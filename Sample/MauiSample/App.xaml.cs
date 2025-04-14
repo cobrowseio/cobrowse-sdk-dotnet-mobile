@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Globalization;
 using Cobrowse.IO;
 
 namespace MauiSample;
@@ -13,14 +14,14 @@ public partial class App : Microsoft.Maui.Controls.Application
 
         CobrowseIO.Instance.License = "trial";
         CobrowseIO.Instance.Start();
-        CobrowseIO.Instance.CustomData = new Dictionary<string, object>
+        CobrowseIO.Instance.CustomData = new Dictionary<string, string>
         {
             { CobrowseIO.UserIdKey, "<set your optional user id>" },
             { CobrowseIO.UserNameKey, "<set your optional user name>" },
             { CobrowseIO.UserEmailKey, "<set your optional user email>" },
             { CobrowseIO.DeviceIdKey, "<set your optional device id>" },
             { CobrowseIO.DeviceNameKey, "<set your optional device name>" },
-            { "<set your optional custom field>", 3.14f }
+            { "<set your optional custom field>", Convert.ToString(3.14f, CultureInfo.InvariantCulture) }
         };
 
         // Optional. Needed for the redaction feature.

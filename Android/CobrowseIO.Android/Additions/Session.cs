@@ -17,34 +17,25 @@ namespace Cobrowse.IO.Android
 
         #region Full device
 
-        [Obsolete("Use FullDeviceState instead")]
-        public bool FullDevice => this._FullDevice().BooleanValue();
-
-        [Obsolete("Use SetFullDeviceState instead")]
-        public void SetFullDevice(bool value, CobrowseCallbackDelegate<Java.Lang.Error, Session> @delegate)
-        {
-            this.SetFullDevice(value, new CobrowseCallback<Java.Lang.Error, Session>(@delegate));
-        }
-
         [GeneratedEnum]
-        public Cobrowse.IO.Android.FullDeviceState FullDeviceState
+        public Cobrowse.IO.Android.FullDeviceState FullDevice
         {
             get
             {
-                return this._FullDeviceState().ToManagedEnum();
+                return this._FullDevice().ToManagedEnum();
             }
         }
 
-        public void SetFullDeviceState([GeneratedEnum] Cobrowse.IO.Android.FullDeviceState state, ICallback callback)
+        public void SetFullDevice([GeneratedEnum] Cobrowse.IO.Android.FullDeviceState state, ICallback callback)
         {
             Cobrowse.IO.Android.Session.FullDeviceStateJava javaState = state.ToJavaEnum();
-            this._SetFullDeviceState(javaState, callback);
+            this._SetFullDevice(javaState, callback);
         }
 
-        public void SetFullDeviceState([GeneratedEnum] Cobrowse.IO.Android.FullDeviceState state, CobrowseCallbackDelegate<Java.Lang.Error, Session> @delegate)
+        public void SetFullDevice([GeneratedEnum] Cobrowse.IO.Android.FullDeviceState state, CobrowseCallbackDelegate<Java.Lang.Error, Session> @delegate)
         {
             Cobrowse.IO.Android.Session.FullDeviceStateJava javaState = state.ToJavaEnum();
-            this._SetFullDeviceState(javaState, new CobrowseCallback<Java.Lang.Error, Session>(@delegate));
+            this._SetFullDevice(javaState, new CobrowseCallback<Java.Lang.Error, Session>(@delegate));
         }
 
         #endregion

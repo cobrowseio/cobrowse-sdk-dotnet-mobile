@@ -2,7 +2,7 @@ using System;
 using Foundation;
 using ObjCRuntime;
 using ReplayKit;
-using Cobrowse.IO.iOS.AppExtension;
+using Cobrowse.IO.iOS;
 
 namespace MauiSample.iOS.BroadcastUploadExtension
 {

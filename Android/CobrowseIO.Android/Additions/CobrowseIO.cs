@@ -8,64 +8,37 @@ namespace Cobrowse.IO.Android
 {
     public partial class CobrowseIO
     {
-        [Obsolete("Use Api property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetApi(string api)
-            => this.Api = api;
-
-        [Obsolete("Use License property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetLicense(string license)
-            => this.License = license;
-
-        public IReadOnlyDictionary<string, object> CustomData
+        public IReadOnlyDictionary<string, string> CustomData
         {
             get
             {
-                if (this.CustomJavaData is Dictionary<string, Java.Lang.Object> dictionary)
+                if (this.CustomJavaData is Dictionary<string, Java.Lang.String> dictionary)
                 {
-                    var rvalue = new Dictionary<string, object>();
-                    foreach (KeyValuePair<string, Java.Lang.Object> next in dictionary)
+                    var rvalue = new Dictionary<string, string>();
+                    foreach (KeyValuePair<string, Java.Lang.String> next in dictionary)
                     {
-                        rvalue.Add(next.Key, next.Value);
+                        rvalue.Add(next.Key, next.Value.ToString());
                     }
                     return rvalue;
+                }
+                if (this.CustomJavaData is IDictionary<string, string>)
+                {
+                    return new ReadOnlyDictionary<string, string>(this.CustomJavaData);
                 }
                 return null;
             }
             set => SetCustomData(value);
         }
 
-        [Obsolete("Use CustomData property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetCustomData(IDictionary<string, object> customData)
-        {
-            this.SetCustomData(
-                (IReadOnlyDictionary<string, object>)
-                new ReadOnlyDictionary<string, object>(customData));
-        }
-
-        internal void SetCustomData(IReadOnlyDictionary<string, object> customData)
+        internal void SetCustomData(IReadOnlyDictionary<string, string> customData)
         {
             if (customData == null)
             {
                 throw new ArgumentNullException(nameof(customData));
             }
-            var javaCustomData = new Dictionary<string, Java.Lang.Object>();
-            foreach (var next in customData)
-            {
-                if (next.Value is Java.Lang.Object jObject)
-                {
-                    javaCustomData.Add(next.Key, jObject);
-                }
-                else
-                {
-                    javaCustomData.Add(next.Key, next.Value.ToString());
-                }
-            }
-            this.CustomJavaData = javaCustomData;
+            this.CustomJavaData = new Dictionary<string, string>(customData);
         }
-        
+
         public void CreateSession(CobrowseCallbackDelegate<Java.Lang.Error, Session> @delegate)
         {
             this.CreateSession(new CobrowseCallback<Java.Lang.Error, Session>(@delegate));
