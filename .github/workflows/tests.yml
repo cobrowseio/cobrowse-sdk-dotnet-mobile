@@ -51,12 +51,12 @@ jobs:
 
     - name: Create NuGet packages
       run: |
-        nuget pack CobrowseIO.DotNet.nuspec
+        dotnet pack SDK/CobrowseIO/CobrowseIO.csproj /p:NuspecFile=../../CobrowseIO.DotNet.nuspec --no-build
 
     - name: Copy nupkg files to artifacts
       uses: actions/upload-artifact@v4
       with:
         path: |
-          CobrowseIO.DotNet.*.nupkg
+          SDK/CobrowseIO/bin/Release/CobrowseIO.DotNet.*.nupkg
         retention-days: 7
         if-no-files-found: error
