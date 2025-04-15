@@ -22,31 +22,22 @@ namespace Cobrowse.IO.iOS
 
         public static CobrowseIO Instance => GetInstance();
 
-        public IReadOnlyDictionary<string, object> CustomData
+        public IReadOnlyDictionary<string, string> CustomData
         {
             get
             {
                 if (this.CustomNSDictionaryData is NSDictionary dictionary)
                 {
-                    var rvalue = new Dictionary<string, object>();
+                    var rvalue = new Dictionary<string, string>();
                     foreach (KeyValuePair<NSObject, NSObject> next in dictionary)
                     {
-                        rvalue.Add(next.Key.ToString(), next.Value);
+                        rvalue.Add(next.Key.ToString(), next.Value.ToString());
                     }
                     return rvalue;
                 }
                 return null;
             }
             set => SetCustomData(value);
-        }
-
-        [Obsolete("Use CustomData property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetCustomData(IDictionary<string, string> customData)
-        {
-            this.SetCustomData(
-                (IReadOnlyDictionary<string, string>)
-                new ReadOnlyDictionary<string, string>(customData));
         }
 
         internal void SetCustomData(IReadOnlyDictionary<string, string> customData)
@@ -65,78 +56,12 @@ namespace Cobrowse.IO.iOS
                 objects[counter] = new NSString(next.Value);
                 counter++;
             }
-            this.CustomNSDictionaryData = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(objects, keys, customData.Count);
+            this.CustomNSDictionaryData = NSDictionary<NSString, NSString>.FromObjectsAndKeys(objects, keys, customData.Count);
         }
 
-        public void SetCustomData(NSDictionary<NSString, NSObject> customData)
+        public void SetCustomData(NSDictionary<NSString, NSString> customData)
         {
             this.CustomNSDictionaryData = customData;
-        }
-
-        [Obsolete("Use CustomData property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetCustomData(IDictionary<string, object> customData)
-        {
-            this.SetCustomData(
-                (IReadOnlyDictionary<string, object>)
-                new ReadOnlyDictionary<string, object>(customData));
-        }
-
-        internal void SetCustomData(IReadOnlyDictionary<string, object> customData)
-        {
-            if (customData == null)
-            {
-                this.CustomNSDictionaryData = null;
-                return;
-            }
-            NSObject[] objects = new NSObject[customData.Count];
-            NSString[] keys = new NSString[customData.Count];
-            int counter = 0;
-            foreach (KeyValuePair<string, object> next in customData)
-            {
-                keys[counter] = new NSString(next.Key);
-                switch (next.Value)
-                {
-                    case string stringValue:
-                        objects[counter] = new NSString(stringValue);
-                        break;
-                    case int intVallue:
-                        objects[counter] = new NSNumber(intVallue);
-                        break;
-                    case float floatValue:
-                        objects[counter] = new NSNumber(floatValue);
-                        break;
-                    case nfloat nfloatValue:
-                        objects[counter] = new NSNumber(nfloatValue);
-                        break;
-                    case double doubleValue:
-                        objects[counter] = new NSNumber(doubleValue);
-                        break;
-                    case bool boolValue:
-                        objects[counter] = new NSNumber(boolValue);
-                        break;
-                    default:
-                        objects[counter] = new NSString(next.Value.ToString());
-                        break;
-                }
-
-                counter++;
-            }
-            this.CustomNSDictionaryData = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(objects, keys, customData.Count);
-        }
-
-        [Obsolete("Use Api property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetApi(string api)
-        {
-            this.Api = api;
-        }
-
-        [Obsolete("Use License property instead")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetLicense(string license)
-        {
-            this.License = license;
         }
 
         public void SetDelegate(CobrowseIODelegate @delegate)

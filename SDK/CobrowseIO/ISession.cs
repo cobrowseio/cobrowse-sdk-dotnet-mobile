@@ -58,26 +58,14 @@ namespace Cobrowse.IO
         void SetRemoteControl(RemoteControlState value, CobrowseCallback? callback);
 
         /// <summary>
-        /// Gets a value indicating if the session is in full-device mode.
-        /// </summary>
-        [Obsolete("Use FullDeviceState instead")]
-        bool FullDevice { get; }
-
-        /// <summary>
-        /// Enables or disables full-device mode.
-        /// </summary>
-        [Obsolete("Use SetFullDeviceState instead")]
-        void SetFullDevice(bool value, CobrowseCallback? callback);
-
-        /// <summary>
         /// Gets the current full device status.
         /// </summary>
-        FullDeviceState FullDeviceState { get; }
+        FullDeviceState FullDevice { get; }
 
         /// <summary>
         /// Enable or disables full device.
         /// </summary>
-        void SetFullDeviceState(FullDeviceState value, CobrowseCallback? callback);
+        void SetFullDevice(FullDeviceState value, CobrowseCallback? callback);
 
         /// <summary>
         /// Sets the capabilities on this session object.

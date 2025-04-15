@@ -119,25 +119,11 @@ namespace Cobrowse.IO
         }
 
         /// <inheritdoc/>
-        [Obsolete("Use FullDeviceState instead")]
-        public bool FullDevice => _platformSession.FullDevice;
-
-        /// <inheritdoc/>
-        [Obsolete("Use SetFullDeviceState instead")]
-        public void SetFullDevice(bool value, CobrowseCallback? callback)
-        {
-            _platformSession.SetFullDevice(value, (NSError e, Session session) =>
-            {
-                callback?.Invoke(e?.AsException(), CobrowseSessionImplementation.TryCreate(session));
-            });
-        }
-
-        /// <inheritdoc/>
-        public FullDeviceState FullDeviceState
+        public FullDeviceState FullDevice
         {
             get
             {
-                switch (_platformSession.FullDeviceState)
+                switch (_platformSession.FullDevice)
                 {
                     case NativeFullDeviceState.Off:
                         return FullDeviceState.Off;
@@ -154,7 +140,7 @@ namespace Cobrowse.IO
         }
 
         /// <inheritdoc/>
-        public void SetFullDeviceState(FullDeviceState state, CobrowseCallback? callback)
+        public void SetFullDevice(FullDeviceState state, CobrowseCallback? callback)
         {
             NativeFullDeviceState toBeSet;
             switch (state)
@@ -176,7 +162,7 @@ namespace Cobrowse.IO
                     break;
             }
 
-            _platformSession.SetFullDeviceState(toBeSet, (NSError e, Session session) =>
+            _platformSession.SetFullDevice(toBeSet, (NSError e, Session session) =>
             {
                 callback?.Invoke(e?.AsException(), CobrowseSessionImplementation.TryCreate(session));
             });

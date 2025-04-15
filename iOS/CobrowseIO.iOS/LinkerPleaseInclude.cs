@@ -18,5 +18,10 @@ namespace Cobrowse.IO.iOS
         {
             _ = new CobrowseIO();
         }
+
+        public void Include(CobrowseIOReplayKitExtension _)
+        {
+            _ = new CobrowseIOReplayKitExtension();
+        }
     }
 }
