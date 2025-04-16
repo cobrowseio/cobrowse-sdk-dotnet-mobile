@@ -24,7 +24,7 @@ if (Args == null || Args.Count == 0)
     throw new ArgumentNullException(nameof(Args));
 }
 
-string platform = Args[0].ToString();
+string platform = Args[0].ToString().ToLower();
 Version version = Version.TryParse(Args.Skip(1).FirstOrDefault(), out Version parsed)
     ? parsed
     : null;
