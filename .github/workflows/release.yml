@@ -3,7 +3,7 @@ name: Build, pack NuGet packages, publish to NuGet.org
 on:
   push:
     tags:
-      - 'v5.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build:
@@ -62,4 +62,4 @@ jobs:
 
     - name: Push nupkg files to NuGet.org
       run: |
-        dotnet nuget push CobrowseIO.DotNet.4.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_PUSH_TOKEN }} --skip-duplicate
+        dotnet nuget push SDK/CobrowseIO/bin/Release/CobrowseIO.DotNet.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_PUSH_TOKEN }} --skip-duplicate
