@@ -16,23 +16,67 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using LibGit2Sharp;
+using Version = System.Version;
 
-private readonly string _root = new FileInfo(GetSourceFile()).Directory.Parent.FullName;
-private readonly string _androidBinary = "cobrowse-sdk-android-binary";
-private readonly string _iOSBinary = "cobrowse-sdk-ios-binary";
-
-using (var android = new Repository(Path.Combine(_root, _androidBinary)))
+if (Args == null || Args.Count == 0)
 {
+    Console.WriteLine("Usage: dotnet script UpdateSDKs.csx -- <platform:ios|android> [x.y.z]");
+    throw new ArgumentNullException(nameof(Args));
+}
+
+string platform = Args[0].ToString().ToLower();
+Version version = Version.TryParse(Args.Skip(1).FirstOrDefault(), out Version parsed)
+    ? parsed
+    : null;
+Console.WriteLine($"Platform: '{platform}', Version: '{version}'");
+
+string root = new FileInfo(GetSourceFile()).Directory.Parent.FullName;
+
+switch (platform)
+{
+    case "android":
+        Console.WriteLine("Updating the Android project...");
+        UpdateAndroid(root, version);
+        break;
+    case "ios":
+        Console.WriteLine("Updating the iOS project...");
+        UpdateiOS(root, version);
+        break;
+    default:
+        throw new ArgumentException($"Unknown platform: {platform}");
+}
+
+private static void UpdateAndroid(string root, Version version)
+{
+    string androidBinary = "cobrowse-sdk-android-binary";
+    using var android = new Repository(Path.Combine(root, androidBinary));
     Console.WriteLine("Android repository is at {0}", android.Info.Path);
     android.PullLatest();
 
-    string maven = Path.Combine(android.Info.WorkingDirectory, "io", "cobrowse", "cobrowse-sdk-android", "maven-metadata.xml");
-    Debug.Assert(File.Exists(maven));
+    string androidVersion;
+    if (version != null)
+    {
+        androidVersion = version.ToString();
+        Tag tag = android.Tags["v" + androidVersion];
+        if (tag == null)
+        {
+            throw new Exception("Cannot find tag v" + androidVersion);
+        }
+        Commit targetCommit = (tag.Target as Commit) 
+            ?? ((tag.Target as TagAnnotation)?.Target as Commit);
+        Commands.Checkout(android, targetCommit);
+        Console.WriteLine("Requested native Android SDK is {0}", androidVersion);     
+    }
+    else
+    {
+        string maven = Path.Combine(android.Info.WorkingDirectory, "io", "cobrowse", "cobrowse-sdk-android", "maven-metadata.xml");
+        Debug.Assert(File.Exists(maven));
 
-    string androidVersion = Regex.Match(File.ReadAllText(maven), @"\<release\>([\S]*?)\<\/release\>").Groups[1].Value;
-    Console.WriteLine("Latest native Android SDK is {0}", androidVersion);
-
-    string csproj = Path.Combine(_root, "Android", "CobrowseIO.Android", "CobrowseIO.Android.csproj");
+        androidVersion = Regex.Match(File.ReadAllText(maven), @"\<release\>([\S]*?)\<\/release\>").Groups[1].Value;
+        Console.WriteLine("Latest native Android SDK is {0}", androidVersion);
+    }
+    
+    string csproj = Path.Combine(root, "Android", "CobrowseIO.Android", "CobrowseIO.Android.csproj");
     Debug.Assert(File.Exists(csproj));
 
     string text = File.ReadAllText(csproj);
@@ -45,12 +89,12 @@ using (var android = new Repository(Path.Combine(_root, _androidBinary)))
     // Replace AndroidLibrary
     text = new Regex("(?<=AndroidLibrary\\ Include\\=\").*(?=\")")
         .Replace(text,
-                 @"..\..\" + _androidBinary + @"\io\cobrowse\cobrowse-sdk-android\" + androidVersion + @"\cobrowse-sdk-android-" + androidVersion + ".aar");
+                 @"..\..\" + androidBinary + @"\io\cobrowse\cobrowse-sdk-android\" + androidVersion + @"\cobrowse-sdk-android-" + androidVersion + ".aar");
 
     // Replace JavaDocJar
     text = new Regex("(?<=JavaDocJar\\ Include\\=\").*(?=\")")
         .Replace(text,
-                 @"..\..\" + _androidBinary + @"\io\cobrowse\cobrowse-sdk-android\" + androidVersion + @"\cobrowse-sdk-android-" + androidVersion + "-javadoc.jar");
+                 @"..\..\" + androidBinary + @"\io\cobrowse\cobrowse-sdk-android\" + androidVersion + @"\cobrowse-sdk-android-" + androidVersion + "-javadoc.jar");
 
     // Replace pom comment
     text = new Regex(@"https:\/\/github\.com\/cobrowseio\/cobrowse-sdk-android-binary\/blob\/master\/io\/cobrowse\/cobrowse-sdk-android\/[0-9]+\.[0-9]+\.[0-9]+\/cobrowse-sdk-android-[0-9]+\.[0-9]+\.[0-9]+\.pom")
@@ -60,35 +104,47 @@ using (var android = new Repository(Path.Combine(_root, _androidBinary)))
     File.WriteAllText(csproj, text);
 }
 
-using (var iOS = new Repository(Path.Combine(_root, _iOSBinary)))
+private static void UpdateiOS(string root, Version version)
 {
+    string iOSBinary = "cobrowse-sdk-ios-binary";
+    using var iOS = new Repository(Path.Combine(root, iOSBinary));
     Console.WriteLine("iOS repository is at {0}", iOS.Info.Path);
     iOS.PullLatest();
 
-    string podspec = Path.Combine(iOS.Info.WorkingDirectory, "CobrowseIO.podspec");
-    Debug.Assert(File.Exists(podspec));
-
-    string iOSVersion = Regex.Match(File.ReadAllText(podspec), @"s\.version = '([\S]*?)'").Groups[1].Value;
-    Console.WriteLine("Latest native iOS SDK is {0}", iOSVersion);
-
-    string[] csprojs = new string[]
+    string iOSVersion;
+    if (version != null)
     {
-        Path.Combine(_root, "iOS", "CobrowseIO.AppExtension.iOS", "CobrowseIO.AppExtension.iOS.csproj"),
-        Path.Combine(_root, "iOS", "CobrowseIO.iOS", "CobrowseIO.iOS.csproj")
-    };
-    foreach (string csproj in csprojs)
+        iOSVersion = version.ToString();
+        Tag tag = iOS.Tags["v" + iOSVersion];
+        if (tag == null)
+        {
+            throw new Exception("Cannot find tag v" + iOSVersion);
+        }
+        Commit targetCommit = (tag.Target as Commit) 
+            ?? ((tag.Target as TagAnnotation)?.Target as Commit);
+        Commands.Checkout(iOS, targetCommit);
+        Console.WriteLine("Requested native iOS SDK is {0}", iOSVersion);     
+    }
+    else
     {
-        Debug.Assert(File.Exists(csproj));
+        string podspec = Path.Combine(iOS.Info.WorkingDirectory, "CobrowseIO.podspec");
+        Debug.Assert(File.Exists(podspec));
 
-        string text = File.ReadAllText(csproj);
+        iOSVersion = Regex.Match(File.ReadAllText(podspec), @"s\.version = '([\S]*?)'").Groups[1].Value;
+        Console.WriteLine("Latest native iOS SDK is {0}", iOSVersion);
+    }
 
-        // Replace Version
-        text = new Regex(@"<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>")
-            .Replace(text,
-                     "<Version>" + iOSVersion + "</Version>");
+    string csproj = Path.Combine(root, "iOS", "CobrowseIO.iOS", "CobrowseIO.iOS.csproj");
+    Debug.Assert(File.Exists(csproj));
 
-        File.WriteAllText(csproj, text);
-    }    
+    string text = File.ReadAllText(csproj);
+
+    // Replace Version
+    text = new Regex(@"<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>")
+        .Replace(text,
+                    "<Version>" + iOSVersion + "</Version>");
+
+    File.WriteAllText(csproj, text);
 }
 
 private static string GetSourceFile([CallerFilePath] string file = "") => file;
