@@ -1,6 +1,18 @@
 name: Update native SDKs and commit the changes
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'SDK platform (Android or iOS)'
+        default: ''
+        type: string
+        required: true
+      cobrowse_sdk_version:
+        description: 'Native SDK version'
+        default: ''
+        type: string
+        required: false
 
 permissions:
   contents: write
