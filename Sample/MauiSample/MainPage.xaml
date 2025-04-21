@@ -38,6 +38,17 @@
                 Clicked="OnCobrowseClicked"
                 HorizontalOptions="Center" />
 
+            <Button Text="Open Accessibility Settings"
+                    SemanticProperties.Hint="Open the system accessibility settings"
+                    Clicked="OnAccessibilitySetupClicked"
+                    HorizontalOptions="Center">
+                <Button.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean" Default="False">
+                        <On Platform="Android" Value="True" />
+                    </OnPlatform>
+                </Button.IsVisible>
+            </Button>
+
         </VerticalStackLayout>
     </ScrollView>
 
