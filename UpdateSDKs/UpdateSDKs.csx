@@ -51,7 +51,7 @@ private static void UpdateAndroid(string root, Version version)
     string androidBinary = "cobrowse-sdk-android-binary";
     using var android = new Repository(Path.Combine(root, androidBinary));
     Console.WriteLine("Android repository is at {0}", android.Info.Path);
-    android.PullLatest();
+    FetchOrigin(android);
 
     string androidVersion;
     if (version != null)
@@ -109,7 +109,7 @@ private static void UpdateiOS(string root, Version version)
     string iOSBinary = "cobrowse-sdk-ios-binary";
     using var iOS = new Repository(Path.Combine(root, iOSBinary));
     Console.WriteLine("iOS repository is at {0}", iOS.Info.Path);
-    iOS.PullLatest();
+    FetchOrigin(iOS);
 
     string iOSVersion;
     if (version != null)
@@ -145,6 +145,28 @@ private static void UpdateiOS(string root, Version version)
                     "<Version>" + iOSVersion + "</Version>");
 
     File.WriteAllText(csproj, text);
+}
+
+private static void FetchOrigin(Repository repo)
+{
+    repo.PullLatest();
+    var remote = repo.Network.Remotes["origin"];
+    if (remote == null)
+    {
+        throw new InvalidOperationException("Remote 'origin' not found.");
+    }
+
+    var fetchOptions = new FetchOptions
+    {
+        TagFetchMode = TagFetchMode.All,
+        OnProgress = progressOutput =>
+        {
+            Console.WriteLine(progressOutput);
+            return true;
+        }
+    };
+    var refSpecs = remote.FetchRefSpecs.Select(x => x.Specification);
+    Commands.Fetch(repo, remote.Name, refSpecs, fetchOptions, "Fetching all branches and tags from origin");
 }
 
 private static string GetSourceFile([CallerFilePath] string file = "") => file;

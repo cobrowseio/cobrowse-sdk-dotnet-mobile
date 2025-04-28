@@ -54,6 +54,8 @@ jobs:
         
     - name: Update native SDK
       run: |
+        git submodule update --init --recursive
+        git submodule foreach --recursive 'git fetch --tags'
         dotnet script UpdateSDKs/UpdateSDKs.csx -- "${{ github.event.inputs.platform }}" "${{ github.event.inputs.cobrowse_sdk_version }}"
 
     - name: Install .NET workloads
