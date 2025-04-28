@@ -18,7 +18,7 @@ namespace Cobrowse.IO.Android
             _delegate = @delegate ?? throw new ArgumentNullException(nameof(@delegate));
         }
 
-        public void Call(Java.Lang.Object err, Java.Lang.Object session)
+        public void Call(Java.Lang.Object? err, Java.Lang.Object? session)
         {
             _delegate.Invoke(err.JavaCast<T1>(), session.JavaCast<T2>());
         }
