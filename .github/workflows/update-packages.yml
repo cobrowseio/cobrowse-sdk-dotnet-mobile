@@ -114,6 +114,10 @@ jobs:
           COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' "$PROJECT_PATH")
           git add $FILES_TO_COMMIT
           git commit -m "feat: update Cobrowse ${PLATFORM^} SDK to ${COBROWSE_VERSION}"
+          # Pull the changes that might have been commited during this run
+          git config pull.rebase true
+          git config rebase.autoStash true
+          git pull origin
           git push
         else
           echo "Native SDK hasn't been updated"
