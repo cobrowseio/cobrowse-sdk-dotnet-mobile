@@ -54,6 +54,8 @@ jobs:
         
     - name: Update native SDK
       run: |
+        git submodule update --init --recursive
+        git submodule foreach --recursive 'git fetch --tags'
         dotnet script UpdateSDKs/UpdateSDKs.csx -- "${{ github.event.inputs.platform }}" "${{ github.event.inputs.cobrowse_sdk_version }}"
 
     - name: Install .NET workloads
@@ -110,12 +112,12 @@ jobs:
           COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' Android/CobrowseIO.Android/CobrowseIO.Android.csproj)
           COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj)
           COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' "$PROJECT_PATH")
-          git add $FILES_TO_COMMIT_ANDROID
-          git add $FILES_TO_COMMIT_IOS
           git add $FILES_TO_COMMIT
-          git commit -m "feat: update Cobrowse Android SDK to ${COBROWSE_VERSION}"
-          git commit -m "feat: update Cobrowse iOS SDK to ${COBROWSE_VERSION}"
           git commit -m "feat: update Cobrowse ${PLATFORM^} SDK to ${COBROWSE_VERSION}"
+          # Pull the changes that might have been commited during this run
+          git config pull.rebase true
+          git config rebase.autoStash true
+          git pull origin
           git push
         else
           echo "Native SDK hasn't been updated"
