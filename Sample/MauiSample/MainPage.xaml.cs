@@ -15,6 +15,14 @@ public partial class MainPage : ContentPage
     {
         this.Navigation.PushAsync(new CobrowseCodePage());
     }
+
+    private void OnAccessibilitySetupClicked(object sender, EventArgs e)
+    {
+#if __ANDROID__
+        global::Cobrowse.IO.Android.CobrowseAccessibilityService.ShowSetup(
+            global::Android.App.Application.Context);
+#endif
+    }
 }
 
 
