@@ -96,9 +96,11 @@ jobs:
         if [ "$PLATFORM" = "android" ]; then
           FILES_TO_COMMIT="cobrowse-sdk-android-binary Android/CobrowseIO.Android/CobrowseIO.Android.csproj"
           PROJECT_PATH="Android/CobrowseIO.Android/CobrowseIO.Android.csproj"
+          PLATFORM_HUMANIZED="Android"
         elif [ "$PLATFORM" = "ios" ]; then
           FILES_TO_COMMIT="cobrowse-sdk-ios-binary iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj"
           PROJECT_PATH="iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj"
+          PLATFORM_HUMANIZED="iOS"
         else
           echo "Unsupported platform: $PLATFORM"
           exit 1
@@ -109,12 +111,9 @@ jobs:
           # https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' Android/CobrowseIO.Android/CobrowseIO.Android.csproj)
-          COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj)
           COBROWSE_VERSION=$(xmllint --xpath 'string(/Project/PropertyGroup/Version)' "$PROJECT_PATH")
           git add $FILES_TO_COMMIT
-          PLATFORM_CAPITALIZED="$(tr '[:lower:]' '[:upper:]' <<< "${PLATFORM:0:1}")${PLATFORM:1}"
-          git commit -m "feat: update Cobrowse ${PLATFORM_CAPITALIZED} SDK to ${COBROWSE_VERSION}"
+          git commit -m "feat: update Cobrowse ${PLATFORM_HUMANIZED} SDK to ${COBROWSE_VERSION}"
           # Pull the changes that might have been commited during this run
           git config pull.rebase true
           git config rebase.autoStash true
