@@ -30,8 +30,8 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
     {
         get
         {
-            float l = _platformSessionMetrics.Latency;
-            return Convert.ToDouble(l);
+            float milliseconds = _platformSessionMetrics.Latency;
+            return Convert.ToDouble(milliseconds) * 1000d;
         }
     }
 

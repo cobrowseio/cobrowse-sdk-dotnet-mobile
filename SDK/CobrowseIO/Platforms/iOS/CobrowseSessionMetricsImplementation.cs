@@ -32,8 +32,8 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
     {
         get
         {
-            NSDate d = _platformSessionMetrics.LastAlive;
-            return (DateTime)d;
+            NSDate? d = _platformSessionMetrics.LastAlive;
+            return d != null ? (DateTime)d : DateTime.MinValue;
         }
     }
 }

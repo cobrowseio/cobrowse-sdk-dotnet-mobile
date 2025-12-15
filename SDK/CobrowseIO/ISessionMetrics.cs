@@ -10,6 +10,7 @@ public interface ISessionMetrics
     /// <summary>
     /// Returns the measured session latency. This is the round-trip time from the device to the server, it doesn't indicate the latency of the agent.
     /// </summary>
+    /// <returns>The session latency, in seconds.</returns>
     double Latency { get; }
 
     /// <summary>
