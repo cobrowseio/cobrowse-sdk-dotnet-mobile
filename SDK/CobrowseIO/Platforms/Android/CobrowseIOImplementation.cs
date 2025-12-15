@@ -76,6 +76,23 @@ namespace Cobrowse.IO
         }
 
         /// <summary>
+        /// Occurs when one or multiple metrics properties change.
+        /// </summary>
+        public event EventHandler<ISession>? MetricsDidUpdate;
+
+        internal bool RaiseMetricsDidUpdate(Session session)
+        {
+            EventHandler<ISession>? metricsDidUpdate = MetricsDidUpdate;
+            if (metricsDidUpdate != null
+                && CobrowseSessionImplementation.TryCreate(session) is ISession s)
+            {
+                metricsDidUpdate(this, s);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Occurs when a session is first made available to the device,
         /// whether by creating a 6 digit code, or via a connect request from an agent.
         /// </summary>

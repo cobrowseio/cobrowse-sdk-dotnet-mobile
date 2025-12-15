@@ -86,6 +86,11 @@ namespace Cobrowse.IO
             }
         }
 
+        public override void SessionMetricsDidUpdate(Session session)
+        {
+            CrossImplementation.RaiseMetricsDidUpdate(session);
+        }
+
         public override void SessionDidLoad(Session session)
         {
             CrossImplementation.RaiseSessionDidLoad(session);

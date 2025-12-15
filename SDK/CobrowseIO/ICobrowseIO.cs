@@ -36,6 +36,11 @@ namespace Cobrowse.IO
         event EventHandler<ISession> RemoteControlRequest;
 
         /// <summary>
+        /// Occurs when one or multiple metrics properties change.
+        /// </summary>
+        event EventHandler<ISession> MetricsDidUpdate;
+
+        /// <summary>
         /// Returns the current session instance or null if it doesn't exist.
         /// </summary>
         ISession? CurrentSession { get; }

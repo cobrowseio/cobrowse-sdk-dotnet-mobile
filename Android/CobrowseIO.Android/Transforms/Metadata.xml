@@ -91,6 +91,31 @@
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='customData' and count(parameter)=0]" name="visibility">internal</attr>
 
     <!-- Change parameter names from the generic p0, p1, etc. to something more meaningful. -->
+    <!-- Callback -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Callback']/method[@name='call' and count(parameter)=2 and parameter[1][@type='E'] and parameter[2][@type='T']]/parameter[@name='p0']"
+        name="name">err</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Callback']/method[@name='call' and count(parameter)=2 and parameter[1][@type='E'] and parameter[2][@type='T']]/parameter[@name='p1']"
+        name="name">arg</attr>
+    <!-- CobrowseIO.FullDeviceRequestDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.FullDeviceRequestDelegate']/method[@name='handleFullDeviceRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">activity</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.FullDeviceRequestDelegate']/method[@name='handleFullDeviceRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p1']"
+        name="name">session</attr>
+    <!-- CobrowseIO.RemoteControlRequestDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RemoteControlRequestDelegate']/method[@name='handleRemoteControlRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">activity</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RemoteControlRequestDelegate']/method[@name='handleRemoteControlRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p1']"
+        name="name">session</attr>
+    <!-- CobrowseIO.SessionLoadDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.SessionLoadDelegate']/method[@name='sessionDidLoad' and count(parameter)=1 and parameter[1][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">session</attr>
     <!-- CobrowseIO.RedactionDelegate -->
     <attr 
         path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RedactionDelegate']/method[@name='redactedViews']/parameter[@name='p0']" 
@@ -125,6 +150,10 @@
         name="name">activity</attr>
     <attr 
         path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.SessionControlsDelegate']/method[@name='hideSessionControls']/parameter[@name='p1']" 
+        name="name">session</attr>
+    <!-- CobrowseIO.MetricsListener -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Session.MetricsListener']/method[@name='sessionMetricsDidUpdate' and count(parameter)=1 and parameter[1][@type='io.cobrowse.Session']]/parameter[@name='p0']"
         name="name">session</attr>
 
 </metadata>
