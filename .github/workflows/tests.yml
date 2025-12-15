@@ -21,6 +21,11 @@ jobs:
       with:
         dotnet-version: '9.x.x'
 
+    # As per https://github.com/actions/setup-dotnet/issues/679#issuecomment-3536292429
+    - name: Create `global.json`
+      run: |
+        echo '{"sdk":{"version": "${{ steps.dotnet.outputs.dotnet-version }}"}}' > ./global.json
+
     - name: Select Xcode version
       env:
         XCODE_SELECTED_PATH: "/Applications/Xcode_16.2.app"
