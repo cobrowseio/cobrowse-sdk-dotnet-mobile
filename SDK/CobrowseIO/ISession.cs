@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cobrowse.IO
 {
@@ -48,6 +49,11 @@ namespace Cobrowse.IO
         IAgent? Agent { get; }
 
         /// <summary>
+        /// Returns the network metrics for the session.
+        /// </summary>
+        ISessionMetrics? Metrics { get; }
+
+        /// <summary>
         /// Gets the current remote control status.
         /// </summary>
         RemoteControlState RemoteControl { get; }
@@ -81,5 +87,47 @@ namespace Cobrowse.IO
         /// Ends the session.
         /// </summary>
         void End(CobrowseCallback? callback);
+
+        /// <summary>
+        /// Returns an immutable dictionary representing custom data of the session instance.
+        /// </summary>
+        IReadOnlyDictionary<string, string> CustomData { get; }
+
+        /// <summary>
+        /// Sets custom data on the session instance.
+        /// </summary>
+        void SetCustomData(
+            IReadOnlyDictionary<string, string> customData,
+            CobrowseCallback? callback);
+
+        /// <summary>
+        /// The reason the session ended
+        /// </summary>
+        SessionEndedReason EndedReason { get; }
+
+        /// <summary>
+        /// When the session was created
+        /// </summary>
+        DateTime? Created { get; }
+
+        /// <summary>
+        /// When the session will expire
+        /// </summary>
+        DateTime? Expires { get; }
+
+        /// <summary>
+        /// When the session was activated
+        /// </summary>
+        DateTime? Activated { get; }
+
+        /// <summary>
+        /// When the session was last updated
+        /// </summary>
+        DateTime? Updated { get; }
+
+        /// <summary>
+        /// When the session was ended
+        /// </summary>
+        DateTime? Ended { get; }
     }
 }

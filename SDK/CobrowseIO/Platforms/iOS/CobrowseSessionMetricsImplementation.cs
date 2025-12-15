@@ -6,6 +6,9 @@ using NativeFullDeviceState = Cobrowse.IO.iOS.FullDeviceState;
 
 namespace Cobrowse.IO;
 
+/// <summary>
+/// Cross-platform wrapper of the Cobrowse.io session metrics.
+/// </summary>
 [Preserve(AllMembers = true)]
 public class CobrowseSessionMetricsImplementation : ISessionMetrics
 {

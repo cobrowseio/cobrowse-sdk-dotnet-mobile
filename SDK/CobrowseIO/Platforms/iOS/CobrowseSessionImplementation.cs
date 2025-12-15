@@ -264,7 +264,7 @@ namespace Cobrowse.IO
         /// <summary>
         /// When the session was created
         /// </summary>
-        public DateTime Created => (DateTime)_platformSession.Created;
+        public DateTime? Created => (DateTime)_platformSession.Created;
 
         /// <summary>
         /// When the session will expire
