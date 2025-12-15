@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Foundation;
 using Cobrowse.IO.iOS;
 using NativeRemoteControlState = Cobrowse.IO.iOS.RemoteControlState;
 using NativeFullDeviceState = Cobrowse.IO.iOS.FullDeviceState;
+using NativeSessionEndedReason = Cobrowse.IO.iOS.SessionEndedReason;
 
 namespace Cobrowse.IO
 {
@@ -67,6 +69,18 @@ namespace Cobrowse.IO
         public IAgent? Agent => _platformSession.Agent != null
             ? new AgentImplementation(_platformSession.Agent)
             : null;
+
+        /// <summary>
+        /// Returns the network metrics for the session.
+        /// </summary>
+        public ISessionMetrics? Metrics
+        {
+            get
+            {
+                var platformMetrics = _platformSession.Metrics;
+                return CobrowseSessionMetricsImplementation.TryCreate(platformMetrics);
+            }
+        }
 
         /// <inheritdoc/>
         public RemoteControlState RemoteControl
@@ -198,5 +212,78 @@ namespace Cobrowse.IO
                 callback?.Invoke(e?.AsException(), CobrowseSessionImplementation.TryCreate(session));
             });
         }
+
+        /// <summary>
+        /// Returns an immutable dictionary representing custom data of the session instance.
+        /// </summary>
+        public IReadOnlyDictionary<string, string> CustomData
+            => _platformSession.CustomData;
+
+        /// <summary>
+        /// Sets custom data on the session instance.
+        /// </summary>
+        public void SetCustomData(
+            IReadOnlyDictionary<string, string> customData,
+            CobrowseCallback? callback)
+        {
+            _platformSession.SetCustomData(customData, (NSError e, Session session) =>
+            {
+                callback?.Invoke(e?.AsException(), CobrowseSessionImplementation.TryCreate(session));
+            });
+        }
+
+        /// <summary>
+        /// The reason the session ended
+        /// </summary>
+        public SessionEndedReason EndedReason
+        {
+            get
+            {
+                switch (_platformSession.EndedReason)
+                {
+                    case NativeSessionEndedReason.Unknown:
+                        return SessionEndedReason.Unknown;
+                    case NativeSessionEndedReason.DeviceEnded:
+                        return SessionEndedReason.DeviceEnded;
+                    case NativeSessionEndedReason.AgentEnded:
+                        return SessionEndedReason.AgentEnded;
+                    case NativeSessionEndedReason.PendingTimeout:
+                        return SessionEndedReason.PendingTimeout;
+                    case NativeSessionEndedReason.AuthorizingTimeout:
+                        return SessionEndedReason.AuthorizingTimeout;
+                    case NativeSessionEndedReason.ActiveTimeout:
+                        return SessionEndedReason.ActiveTimeout;
+                    case NativeSessionEndedReason.LimitEnforcement:
+                        return SessionEndedReason.LimitEnforcement;
+                    default:
+                        return default;
+                }
+            }
+        }
+
+        /// <summary>
+        /// When the session was created
+        /// </summary>
+        public DateTime Created => (DateTime)_platformSession.Created;
+
+        /// <summary>
+        /// When the session will expire
+        /// </summary>
+        public DateTime? Expires => (DateTime?)_platformSession.Expires;
+
+        /// <summary>
+        /// When the session was activated
+        /// </summary>
+        public DateTime? Activated => (DateTime?)_platformSession.Activated;
+
+        /// <summary>
+        /// When the session was last updated
+        /// </summary>
+        public DateTime? Updated => (DateTime?)_platformSession.Updated;
+
+        /// <summary>
+        /// When the session was ended
+        /// </summary>
+        public DateTime? Ended => (DateTime?)_platformSession.Ended;
     }
 }
