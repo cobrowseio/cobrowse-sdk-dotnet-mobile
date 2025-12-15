@@ -16,21 +16,8 @@ jobs:
       with:
         submodules: 'true'
 
-    - uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x.x'
-
-    - name: Select Xcode version
-      env:
-        XCODE_SELECTED_PATH: "/Applications/Xcode_16.2.app"
-      shell: bash
-      run: sudo xcode-select --switch ${XCODE_SELECTED_PATH}
-
-    - name: Print toolchain versions
-      run: |
-        dotnet --version
-        xcodebuild -version
-        java -version
+    - name: Set up environment
+      uses: ./.github/environment-setup/action.yml
 
     - name: Install .NET workloads
       run: |
