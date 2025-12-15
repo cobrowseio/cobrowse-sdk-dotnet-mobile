@@ -30,12 +30,12 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
     public double Latency => _platformSessionMetrics.Latency;
 
     /// <inheritdoc/>
-    public DateTime LastAlive
+    public DateTime? LastAlive
     {
         get
         {
             NSDate? d = _platformSessionMetrics.LastAlive;
-            return d != null ? (DateTime)d : DateTime.MinValue;
+            return d != null ? (DateTime)d : null;
         }
     }
 }

@@ -16,5 +16,5 @@ public interface ISessionMetrics
     /// <summary>
     /// Returns the timestamp of the last alive message that the SDK sent in a response to a probe from agent.
     /// </summary>
-    DateTime LastAlive { get; }
+    DateTime? LastAlive { get; }
 }

@@ -73,7 +73,6 @@ namespace Cobrowse.IO.Android
             set => SetWebViewRedactedViews(value);
         }
 
-
         /// <summary>
         /// Gets or sets the CSS selectors which will be used to unredact content within WebViews.
         /// Any HTML element matching one of the selectors configured here will be unredacted and

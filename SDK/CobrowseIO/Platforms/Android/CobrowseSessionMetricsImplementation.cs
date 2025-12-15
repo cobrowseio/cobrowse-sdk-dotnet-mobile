@@ -37,7 +37,7 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
     }
 
     /// <inheritdoc/>
-    public DateTime LastAlive
+    public DateTime? LastAlive
     {
         get
         {

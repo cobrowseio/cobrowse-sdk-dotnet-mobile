@@ -237,18 +237,18 @@ namespace Cobrowse.IO
         }
 
         /// <inheritdoc/>
-        public DateTime? Created => _platformSession.Created.ToNullableDateTime();
+        public DateTime? Created => _platformSession.Created.ToDateTime();
 
         /// <inheritdoc/>
-        public DateTime? Expires => _platformSession.Expires.ToNullableDateTime();
+        public DateTime? Expires => _platformSession.Expires.ToDateTime();
 
         /// <inheritdoc/>
-        public DateTime? Activated => _platformSession.Activated.ToNullableDateTime();
+        public DateTime? Activated => _platformSession.Activated.ToDateTime();
 
         /// <inheritdoc/>
-        public DateTime? Updated => _platformSession.Updated.ToNullableDateTime();
+        public DateTime? Updated => _platformSession.Updated.ToDateTime();
 
         /// <inheritdoc/>
-        public DateTime? Ended => _platformSession.Ended.ToNullableDateTime();
+        public DateTime? Ended => _platformSession.Ended.ToDateTime();
     }
 }
