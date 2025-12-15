@@ -208,6 +208,22 @@ namespace Cobrowse.IO
         }
 
         /// <inheritdoc/>
+        public void SetWebViewRedactedViews(string[] webviewRedactedViews, string forDomain)
+            => NativeCobrowseIO.Instance.SetWebViewRedactedViews(webviewRedactedViews, forDomain);
+
+        /// <inheritdoc/>
+        public string[] GetWebViewRedactedViews(string forDomain)
+            => NativeCobrowseIO.Instance.GetWebViewRedactedViews(forDomain);
+
+        /// <inheritdoc/>
+        public void SetWebViewUnredactedViews(string[] webviewUnredactedViews, string forDomain)
+            => NativeCobrowseIO.Instance.SetWebViewUnredactedViews(webviewUnredactedViews, forDomain);
+
+        /// <inheritdoc/>
+        public string[] GetWebViewUnredactedViews(string forDomain)
+            => NativeCobrowseIO.Instance.GetWebViewUnredactedViews(forDomain);
+
+        /// <inheritdoc/>
         public bool Registration
         {
             get => NativeCobrowseIO.Instance.Registration;

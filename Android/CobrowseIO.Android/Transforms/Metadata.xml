@@ -28,10 +28,10 @@
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='capabilities' and count(parameter)=0]" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='registration' and count(parameter)=1]" name="managedName">SetRegistration</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='registration' and count(parameter)=0]" name="managedName">GetRegistration</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1]" name="managedName">SetWebviewRedactedViews</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=0]" name="managedName">GetWebviewRedactedViews</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1]" name="visibility">internal</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=0]" name="visibility">internal</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=2]" name="managedName">SetWebViewRedactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1]" name="managedName">GetWebViewRedactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=2]" name="managedName">SetWebViewUnredactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=1]" name="managedName">GetWebViewUnredactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=1]" name="managedName">SetRedactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=0]" name="managedName">GetRedactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=1]" name="visibility">internal</attr>

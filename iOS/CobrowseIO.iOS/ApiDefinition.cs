@@ -383,29 +383,29 @@ namespace Cobrowse.IO.iOS
         [Export("registration", ArgumentSemantic.Assign)]
         bool Registration { get; set; }
 
-        // @property (nonnull) NSArray<NSString*>* webviewRedactedViews API_AVAILABLE(ios(11));
+        // @property (nonnull) NSArray<NSString*>* webviewRedactedViews;
         [Export("webviewRedactedViews", ArgumentSemantic.Assign)]
         string[] WebViewRedactedViews { get; set; }
 
         //-(void) setWebviewRedactedViews:(nonnull NSArray<NSString*>*) webviewRedactedViews forDomain:(nonnull NSString*);
         [Export("setWebviewRedactedViews:forDomain:")]
-        void SetWebviewRedactedViews(string[] webviewRedactedViews, string forDomain);
+        void SetWebViewRedactedViews(string[] webviewRedactedViews, string forDomain);
 
         //-(nonnull NSArray<NSString*>*) webviewRedactedViews: (nonnull NSString*);
         [Export("webviewRedactedViews:")]
-        string[] WebviewRedactedViews(string forDomain);
+        string[] GetWebViewRedactedViews(string forDomain);
 
-        // @property (nonnull) NSArray<NSString*>* webviewUnredactedViews API_AVAILABLE(ios(11));
+        // @property (nonnull) NSArray<NSString*>* webviewUnredactedViews;
         [Export("webviewUnredactedViews", ArgumentSemantic.Assign)]
         string[] WebViewUnredactedViews { get; set; }
 
-        //-(void) setWebviewUnredactedViews:(nonnull NSArray<NSString*>*) webviewUnredactedViews forDomain:(nonnull NSString*) domain API_AVAILABLE(ios(11));
+        //-(void) setWebviewUnredactedViews:(nonnull NSArray<NSString*>*) webviewUnredactedViews forDomain:(nonnull NSString*) domain;
         [Export("setWebviewUnredactedViews:forDomain:")]
-        void SetWebviewUnredactedViews(string[] webviewUnredactedViews, string forDomain);
+        void SetWebViewUnredactedViews(string[] webviewUnredactedViews, string forDomain);
 
-        //-(nonnull NSArray<NSString*>*) webviewUnredactedViews:(nonnull NSString*) domain API_AVAILABLE(ios(11));
+        //-(nonnull NSArray<NSString*>*) webviewUnredactedViews:(nonnull NSString*) domain;
         [Export("webviewUnredactedViews:")]
-        string[] WebviewUnredactedViews(string forDomain);
+        string[] GetWebViewUnredactedViews(string forDomain);
 
         [Wrap("WeakDelegate")]
         [NullAllowed]
