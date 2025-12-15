@@ -82,7 +82,7 @@ namespace Cobrowse.IO.Android
         public string[] WebViewUnredactedViews
         {
             get => GetWebViewUnredactedViews();
-            set => SetWebviewUnredactedViews(value);
+            set => SetWebViewUnredactedViews(value);
         }
     }
 }
