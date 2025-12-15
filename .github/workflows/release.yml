@@ -17,7 +17,7 @@ jobs:
         submodules: 'true'
 
     - name: Set up environment
-      uses: ./.github/environment-setup/action.yml
+      uses: ./.github/actions/environment-setup
 
     - name: Install .NET workloads
       run: |
