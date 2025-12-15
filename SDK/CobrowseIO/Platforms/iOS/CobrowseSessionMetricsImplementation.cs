@@ -26,8 +26,10 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
             : null;
     }
 
+    /// <inheritdoc/>
     public double Latency => _platformSessionMetrics.Latency;
 
+    /// <inheritdoc/>
     public DateTime LastAlive
     {
         get

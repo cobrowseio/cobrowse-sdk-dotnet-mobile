@@ -3,7 +3,7 @@ using System;
 namespace Cobrowse.IO;
 
 /// <summary>
-/// Represents the network metrics of a session.
+/// Represents the network metrics of a <see cref="ISession"/>.
 /// </summary>
 public interface ISessionMetrics
 {

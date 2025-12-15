@@ -4,12 +4,12 @@ using Android.Runtime;
 namespace Cobrowse.IO;
 
 [Preserve(AllMembers = true)]
-public static class DateTimeExtensions
+internal static class DateTimeExtensions
 {
     /// <summary>
     /// Convert <see cref="Java.Util.Date"/> to <see cref="DateTime"/>.
     /// </summary>
-    public static DateTime ToDateTime(this Java.Util.Date? javaDate)
+    internal static DateTime ToDateTime(this Java.Util.Date? javaDate)
     {
         // convert Java.Util.Date to DateTime
         if (javaDate == null)
@@ -25,7 +25,7 @@ public static class DateTimeExtensions
     /// <summary>
     /// Convert <see cref="Java.Util.Date"/> to nullable <see cref="DateTime"/>.
     /// </summary>
-    public static DateTime? ToNullableDateTime(this Java.Util.Date? javaDate)
+    internal static DateTime? ToNullableDateTime(this Java.Util.Date? javaDate)
     {
         // convert Java.Util.Date to DateTime
         if (javaDate == null)

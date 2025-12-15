@@ -28,51 +28,33 @@ namespace Cobrowse.IO
                 : null;
         }
 
-        /// <summary>
-        /// Gets the session's code.
-        /// </summary>
+        /// <inheritdoc/>
         public string? Code => _platformSession.Code;
 
-        /// <summary>
-        /// Gets the session's state.
-        /// </summary>
+        /// <inheritdoc/>
         public string State => _platformSession.State;
 
-        /// <summary>
-        /// Gets a value indicating if the session running, frames are streaming to the agent.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsActive => _platformSession.IsActive;
 
-        /// <summary>
-        /// Gets a value indicating if waiting for the user to confirm the session.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsAuthorizing => _platformSession.IsAuthorizing;
 
-        /// <summary>
-        /// Gets a value indicating if the ession is over and can no longer be used or edited.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsEnded => _platformSession.IsEnded;
 
-        /// <summary>
-        /// Gets a value indicating if the session has been created but is waiting for agent or user.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsPending => _platformSession.IsPending;
 
-        /// <summary>
-        /// Gets a value indicating if an agent object is available.
-        /// </summary>
+        /// <inheritdoc/>
         public bool HasAgent => _platformSession.HasAgent;
 
-        /// <summary>
-        /// Gets an agent instance.
-        /// </summary>
+        /// <inheritdoc/>
         public IAgent? Agent => _platformSession.Agent != null
             ? new AgentImplementation(_platformSession.Agent)
             : null;
 
-        /// <summary>
-        /// Returns the network metrics for the session.
-        /// </summary>
+        /// <inheritdoc/>
         public ISessionMetrics? Metrics
         {
             get
@@ -191,9 +173,7 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// Activates the session.
-        /// </summary>
+        /// <inheritdoc/>
         public void Activate(CobrowseCallback? callback)
         {
             _platformSession.Activate((NSError e, Session session) =>
@@ -202,9 +182,7 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// Ends the session.
-        /// </summary>
+        /// <inheritdoc/>
         public void End(CobrowseCallback callback)
         {
             _platformSession.End((NSError e, Session session) =>
@@ -213,15 +191,11 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// Returns an immutable dictionary representing custom data of the session instance.
-        /// </summary>
+        /// <inheritdoc/>
         public IReadOnlyDictionary<string, string> CustomData
             => _platformSession.CustomData;
 
-        /// <summary>
-        /// Sets custom data on the session instance.
-        /// </summary>
+        /// <inheritdoc/>
         public void SetCustomData(
             IReadOnlyDictionary<string, string> customData,
             CobrowseCallback? callback)
@@ -232,9 +206,7 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// The reason the session ended
-        /// </summary>
+        /// <inheritdoc/>
         public SessionEndedReason EndedReason
         {
             get
@@ -261,29 +233,19 @@ namespace Cobrowse.IO
             }
         }
 
-        /// <summary>
-        /// When the session was created
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? Created => (DateTime)_platformSession.Created;
 
-        /// <summary>
-        /// When the session will expire
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? Expires => (DateTime?)_platformSession.Expires;
 
-        /// <summary>
-        /// When the session was activated
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? Activated => (DateTime?)_platformSession.Activated;
 
-        /// <summary>
-        /// When the session was last updated
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? Updated => (DateTime?)_platformSession.Updated;
 
-        /// <summary>
-        /// When the session was ended
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? Ended => (DateTime?)_platformSession.Ended;
     }
 }

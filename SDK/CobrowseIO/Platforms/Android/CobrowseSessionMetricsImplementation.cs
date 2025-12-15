@@ -26,6 +26,7 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
             : null;
     }
 
+    /// <inheritdoc/>
     public double Latency
     {
         get
@@ -35,6 +36,7 @@ public class CobrowseSessionMetricsImplementation : ISessionMetrics
         }
     }
 
+    /// <inheritdoc/>
     public DateTime LastAlive
     {
         get

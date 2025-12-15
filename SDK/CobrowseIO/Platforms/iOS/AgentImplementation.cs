@@ -17,20 +17,13 @@ namespace Cobrowse.IO
             _platformAgent = agent ?? throw new ArgumentNullException(nameof(agent));
         }
 
-        /// <summary>
-        /// The email of the support agent, may be null if account privacy settings
-        /// restrict access to the agent email
-        /// </summary>
+        /// <inheritdoc/>
         public string Email => _platformAgent.Email;
 
-        /// <summary>
-        /// The id of the support agent.
-        /// </summary>
+        /// <inheritdoc/>
         public string Id => _platformAgent.Id;
 
-        /// <summary>
-        /// The display name of the support agent.
-        /// </summary>
+        /// <inheritdoc/>
         public string Name => _platformAgent.Name;
     }
 }
