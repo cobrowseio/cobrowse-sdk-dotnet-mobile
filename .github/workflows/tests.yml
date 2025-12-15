@@ -17,9 +17,9 @@ jobs:
       with:
         submodules: 'true'
 
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '8.x.x'
+        dotnet-version: '9.x.x'
 
     - name: Select Xcode version
       env:
