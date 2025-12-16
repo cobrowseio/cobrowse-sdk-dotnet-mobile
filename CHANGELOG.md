@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v5.0.0...v5.1.0) (2025-12-16)
+
+
+### Features
+
+* update Cobrowse Android SDK to 3.12.1 ([ebf3765](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/ebf37653a03ed2187f5f81a35e597279be7f2f17))
+* update Cobrowse Android SDK to 3.12.2 ([b647b73](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/b647b7369315af56b1255f82133aa98d1d4de4f6))
+* update Cobrowse Android SDK to 3.12.3 ([6ae3056](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/6ae30561583339eb5dbf422d2e70860b429bb6b1))
+* update Cobrowse Android SDK to 3.12.4 ([0a0c8d9](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/0a0c8d9389912fbbe10f7a228698b1f1c4145f24))
+* update Cobrowse Android SDK to 3.7.0 ([d0793a8](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/d0793a8219969569d77ac8b9e459cc46b3795eb1))
+* update Cobrowse Android SDK to 3.7.1 ([686b6eb](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/686b6ebfef1e6e3d72e2c50061c54125d5a52975))
+* update Cobrowse Android SDK to 3.8.0 ([ba84460](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/ba84460531580252deaf039b58ce8d061fefe65c))
+* update Cobrowse Android SDK to 3.8.1 ([aca5914](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/aca591424bf176370f841a0a60bbff2e4b259284))
+* update Cobrowse Android SDK to 3.8.2 ([d2540ed](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/d2540ed764d771c68cb836596813fe034d570f84))
+* update Cobrowse Android SDK to 3.9.1 ([9060aa5](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/9060aa52f350c84cddfbd4a9bd61bab64a1203c6))
+* update Cobrowse iOS SDK to 3.10.0 ([fdd0dcd](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/fdd0dcd1cfa5b0041ae6b17a60c00655902bad17))
+* update Cobrowse iOS SDK to 3.11.0 ([7b3d625](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/7b3d6256135f9d3f6be2b51b596e7f0923e41746))
+* update Cobrowse iOS SDK to 3.11.1 ([c229493](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/c229493fda2e396b72313bae06428eee4d34bf7b))
+* update Cobrowse iOS SDK to 3.13.3 ([df96b60](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/df96b60e2c64d70e429be9c8fc5a1df11f2b8f87))
+* update Cobrowse iOS SDK to 3.13.4 ([53f34c9](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/53f34c9f1fd974bcc006d2795b49c987041ab7e6))
+* update Cobrowse iOS SDK to 3.8.0 ([37be9ff](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/37be9ffa33755c7a91121f9c554d9d21935118fc))
+* update Cobrowse iOS SDK to 3.8.1 ([3619274](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/3619274868e9b5213b1c41a23bd1064ae5ea5b74))
+* update Cobrowse iOS SDK to 3.9.0 ([adfe8de](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/adfe8de891a749b4b424f42add2b4ee4496af74f))
+
+
+### Bug Fixes
+
+* Bind the new iOS (`3.6.2` → `3.13.4`) and Android (`3.6.0` → `3.12.4`) APIs ([#145](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/issues/145)) ([b07a814](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/b07a814a592ee0cdb44fc31c81977c93eeb7fdc4))
+
 ## [5.0.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v4.2.0...v5.0.0) (2025-05-02)
 
 
