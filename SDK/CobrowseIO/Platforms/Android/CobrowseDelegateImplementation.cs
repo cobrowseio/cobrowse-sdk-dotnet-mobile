@@ -14,7 +14,8 @@ namespace Cobrowse.IO
     public class CobrowseDelegateImplementation : Java.Lang.Object,
         NativeCobrowseIO.ISessionRequestDelegate,
         NativeCobrowseIO.IRemoteControlRequestDelegate,
-        NativeCobrowseIO.ISessionLoadDelegate
+        NativeCobrowseIO.ISessionLoadDelegate,
+        NativeCobrowseIO.ISessionMetricsDelegate
     {
         private CobrowseIOImplementation CrossImplementation
             => (CobrowseIOImplementation)CobrowseIO.Instance;
@@ -57,6 +58,11 @@ namespace Cobrowse.IO
         public void SessionDidEnd(Session session)
         {
             CrossImplementation.RaiseSessionDidEnd(session);
+        }
+
+        public void SessionMetricsDidUpdate(Session session)
+        {
+            CrossImplementation.RaiseMetricsDidUpdate(session);
         }
     }
 }

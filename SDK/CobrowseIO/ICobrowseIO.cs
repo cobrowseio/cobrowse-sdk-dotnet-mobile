@@ -36,6 +36,11 @@ namespace Cobrowse.IO
         event EventHandler<ISession> RemoteControlRequest;
 
         /// <summary>
+        /// Occurs when one or multiple metrics properties change.
+        /// </summary>
+        event EventHandler<ISession> MetricsDidUpdate;
+
+        /// <summary>
         /// Returns the current session instance or null if it doesn't exist.
         /// </summary>
         ISession? CurrentSession { get; }
@@ -90,6 +95,26 @@ namespace Cobrowse.IO
         /// Defaults to an empty list which means the feature is disabled.
         /// </summary>
         string[] WebViewRedactedViews { get; set; }
+
+        /// <summary>
+        /// The CSS selectors which will be redacted within Webviews for a specific domain.
+        /// </summary>
+        void SetWebViewRedactedViews(string[] webviewRedactedViews, string forDomain);
+
+        /// <summary>
+        /// The CSS selectors which are being redacted within Webviews for a specific domain.
+        /// </summary>
+        string[] GetWebViewRedactedViews(string forDomain);
+
+        /// <summary>
+        /// The CSS selectors which will be unredacted within Webviews for a specific domain.
+        /// </summary>
+        void SetWebViewUnredactedViews(string[] webviewUnredactedViews, string forDomain);
+
+        /// <summary>
+        /// The CSS selectors which are being unredacted within Webviews for a specific domain.
+        /// </summary>
+        string[] GetWebViewUnredactedViews(string forDomain);
 
         /// <summary>
         /// By default, when the SDK starts it will register the device to your account and share

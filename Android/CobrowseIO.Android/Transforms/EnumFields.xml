@@ -26,5 +26,15 @@
         <field jni-name="On" clr-name="On" value="3" />
     </mapping>
 
+    <mapping jn-class="io/cobrowse/Session/EndedReason" clr-enum-type="Cobrowse.IO.Android.SessionEndedReason">
+        <field jni-name="Unknown" clr-name="Unknown" value="0" />
+        <field jni-name="DeviceEnded" clr-name="DeviceEnded" value="1" />
+        <field jni-name="AgentEnded" clr-name="AgentEnded" value="2" />
+        <field jni-name="PendingTimeout" clr-name="PendingTimeout" value="3" />
+        <field jni-name="AuthorizingTimeout" clr-name="AuthorizingTimeout" value="4" />
+        <field jni-name="ActiveTimeout" clr-name="ActiveTimeout" value="5" />
+        <field jni-name="LimitEnforcement" clr-name="LimitEnforcement" value="6" />
+    </mapping>
+
 </enum-field-mappings>
 

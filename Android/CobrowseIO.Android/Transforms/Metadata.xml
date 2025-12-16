@@ -12,30 +12,51 @@
 
     <!-- Make setter-method names start with "Set" -->
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='instance']" name="managedName">GetInstance</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='license' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">SetLicense</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='license' and count(parameter)=0]" name="managedName">GetLicense</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='currentSession']" name="managedName">GetCurrentSession</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='customData' and count(parameter)=1]" name="managedName">SetCustomJavaData</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='customData' and count(parameter)=0]" name="managedName">GetCustomJavaData</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='customData' and count(parameter)=1]" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='customData' and count(parameter)=0]" name="visibility">internal</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='deviceId']" name="managedName">GetDeviceId</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='api' and count(parameter)=1]" name="managedName">SetApi</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='api' and count(parameter)=0]" name="managedName">GetApi</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='capabilities' and count(parameter)=1]" name="managedName">SetCapabilities</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='capabilities' and count(parameter)=0]" name="managedName">GetCapabilities</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='capabilities' and count(parameter)=1]" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='capabilities' and count(parameter)=0]" name="visibility">internal</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='registration' and count(parameter)=1]" name="managedName">SetRegistration</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='registration' and count(parameter)=0]" name="managedName">GetRegistration</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1]" name="managedName">SetWebviewRedactedViews</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=0]" name="managedName">GetWebviewRedactedViews</attr>
-    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1]" name="visibility">internal</attr>
+
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String[]']]" name="managedName">SetWebViewRedactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=0]" name="managedName">GetWebViewRedactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String[]']]" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=0]" name="visibility">internal</attr>
+
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String[]']]" name="managedName">SetWebViewUnredactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=0]" name="managedName">GetWebViewUnredactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String[]']]" name="visibility">internal</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=0]" name="visibility">internal</attr>
+
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String[]']]" name="managedName">SetWebViewRedactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewRedactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">GetWebViewRedactedViews</attr>
+
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String[]']]" name="managedName">SetWebViewUnredactedViews</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='webviewUnredactedViews' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">GetWebViewUnredactedViews</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=1]" name="managedName">SetRedactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=0]" name="managedName">GetRedactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=1]" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='redactedViews' and count(parameter)=0]" name="visibility">internal</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='unredactedViews' and count(parameter)=1]" name="managedName">SetUnredactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='unredactedViews' and count(parameter)=0]" name="managedName">GetUnredactedViews</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='CobrowseIO']/method[@name='unredactedViews' and count(parameter)=1]" name="visibility">internal</attr>
@@ -46,6 +67,14 @@
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='agent']" name="managedName">GetAgent</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='state']" name="managedName">GetState</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='id']" name="managedName">GetId</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='metrics']" name="managedName">GetMetrics</attr>
+    <attr path="/api/package[@name='io.cobrowse']/interface[@name='Session.Metrics']/method[@name='lastAlive']" name="managedName">GetLastAlive</attr>
+    <attr path="/api/package[@name='io.cobrowse']/interface[@name='Session.Metrics']/method[@name='latency']" name="managedName">GetLatency</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='created' and count(parameter)=0]" name="managedName">GetCreated</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='expires' and count(parameter)=0]" name="managedName">GetExpires</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='activated' and count(parameter)=0]" name="managedName">GetActivated</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='updated' and count(parameter)=0]" name="managedName">GetUpdated</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='ended' and count(parameter)=0]" name="managedName">GetEnded</attr>
 
     <!--
     Ideally we would use Java.Lang.Enum-enum mapping, but for some reason Xamarin generates invalid
@@ -68,10 +97,46 @@
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='fullDevice']" name="visibility">internal</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setFullDevice']" name="managedName">_SetFullDevice</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setFullDevice']" name="visibility">internal</attr>
+
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setCapabilities']" name="managedName">_SetCapabilities</attr>
     <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setCapabilities']" name="visibility">internal</attr>
 
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session.EndedReason']" name="visibility">internal</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session.EndedReason']" name="managedName">EndedReasonJava</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='endedReason']" name="managedName">_EndedReason</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='endedReason']" name="visibility">internal</attr>
+
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setCustomData' and count(parameter)=2]" name="managedName">SetCustomJavaData</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='customData' and count(parameter)=0]" name="managedName">GetCustomJavaData</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='setCustomData' and count(parameter)=2]" name="visibility">internal</attr>
+    <attr path="/api/package[@name='io.cobrowse']/class[@name='Session']/method[@name='customData' and count(parameter)=0]" name="visibility">internal</attr>
+
     <!-- Change parameter names from the generic p0, p1, etc. to something more meaningful. -->
+    <!-- Callback -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Callback']/method[@name='call' and count(parameter)=2 and parameter[1][@type='E'] and parameter[2][@type='T']]/parameter[@name='p0']"
+        name="name">err</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Callback']/method[@name='call' and count(parameter)=2 and parameter[1][@type='E'] and parameter[2][@type='T']]/parameter[@name='p1']"
+        name="name">arg</attr>
+    <!-- CobrowseIO.FullDeviceRequestDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.FullDeviceRequestDelegate']/method[@name='handleFullDeviceRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">activity</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.FullDeviceRequestDelegate']/method[@name='handleFullDeviceRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p1']"
+        name="name">session</attr>
+    <!-- CobrowseIO.RemoteControlRequestDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RemoteControlRequestDelegate']/method[@name='handleRemoteControlRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">activity</attr>
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RemoteControlRequestDelegate']/method[@name='handleRemoteControlRequest' and count(parameter)=2 and parameter[1][@type='android.app.Activity'] and parameter[2][@type='io.cobrowse.Session']]/parameter[@name='p1']"
+        name="name">session</attr>
+    <!-- CobrowseIO.SessionLoadDelegate -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.SessionLoadDelegate']/method[@name='sessionDidLoad' and count(parameter)=1 and parameter[1][@type='io.cobrowse.Session']]/parameter[@name='p0']"
+        name="name">session</attr>
     <!-- CobrowseIO.RedactionDelegate -->
     <attr 
         path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.RedactionDelegate']/method[@name='redactedViews']/parameter[@name='p0']" 
@@ -106,6 +171,10 @@
         name="name">activity</attr>
     <attr 
         path="/api/package[@name='io.cobrowse']/interface[@name='CobrowseIO.SessionControlsDelegate']/method[@name='hideSessionControls']/parameter[@name='p1']" 
+        name="name">session</attr>
+    <!-- CobrowseIO.MetricsListener -->
+    <attr
+        path="/api/package[@name='io.cobrowse']/interface[@name='Session.MetricsListener']/method[@name='sessionMetricsDidUpdate' and count(parameter)=1 and parameter[1][@type='io.cobrowse.Session']]/parameter[@name='p0']"
         name="name">session</attr>
 
 </metadata>

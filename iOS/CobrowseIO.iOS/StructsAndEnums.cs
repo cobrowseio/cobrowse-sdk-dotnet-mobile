@@ -20,4 +20,16 @@ namespace Cobrowse.IO.iOS
         Rejected,
         On
     }
+
+    [Native(NativeName = "CBIOSessionEndedReason")]
+    public enum SessionEndedReason : ulong
+    {
+        Unknown = 0,
+        DeviceEnded,
+        AgentEnded,
+        PendingTimeout,
+        AuthorizingTimeout,
+        ActiveTimeout,
+        LimitEnforcement
+    }
 }

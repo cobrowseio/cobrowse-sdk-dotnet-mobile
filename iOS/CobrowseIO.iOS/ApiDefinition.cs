@@ -108,6 +108,19 @@ namespace Cobrowse.IO.iOS
     // typedef const void (^CBErrorSessionBlock)(NSError * _Nullable, CBIOSession * _Nullable);
     delegate void CBErrorSessionBlock([NullAllowed] NSError error, [NullAllowed] Session session);
 
+    // @interface CBIOSessionMetrics : NSObject
+    [BaseType(typeof(NSObject), Name = "CBIOSessionMetrics")]
+    interface SessionMetrics
+    {
+        // - (NSTimeInterval) latency;
+        [Export("latency")]
+        double Latency { get; }
+
+        // - (nullable NSDate*) lastAlive;
+        [NullAllowed, Export("lastAlive")]
+        NSDate LastAlive { get; }
+    }
+
     // @interface CBIOSession : CBIORESTResource
     [BaseType(typeof(RESTResource), Name = "CBIOSession")]
     interface Session
@@ -156,6 +169,10 @@ namespace Cobrowse.IO.iOS
         [NullAllowed, Export("agent")]
         Agent Agent { get; }
 
+        // -(nonnull CBIOSessionMetrics*) metrics;
+        [Export("metrics")]
+        SessionMetrics Metrics { get; }
+
         // -(CBIOFullDeviceState) fullDevice;
         [Export("fullDevice")]
         FullDeviceState FullDevice { get; }
@@ -175,6 +192,41 @@ namespace Cobrowse.IO.iOS
         // -(void) setCapabilities: ( NSArray<NSString*>* _Nonnull) capabilities callback: (nullable CBErrorSessionBlock) callback;
         [Export("setCapabilities:callback:")]
         void SetCapabilities(string[] capabilities, [NullAllowed] CBErrorSessionBlock callback);
+
+        //- (nonnull NSDictionary<NSString *, NSString *> *)customData;
+        [Export("customData")]
+        [Internal]
+        NSDictionary<NSString, NSString> CustomNSDictionaryData { get;  }
+
+        // - (void)setCustomData:(nonnull NSDictionary<NSString*, NSString*>*)customData
+        //              callback:(nullable CBErrorSessionBlock) callback;
+        [Export("setCustomData:callback:")]
+        [Internal]
+        void SetCustomNSDictionaryData(NSDictionary<NSString, NSString> customData, [NullAllowed] CBErrorSessionBlock callback);
+
+        // -(CBIOSessionEndedReason) endedReason;
+        [Export("endedReason")]
+        SessionEndedReason EndedReason { get; }
+
+        // -(nonnull NSDate*) created;
+        [Export("created")]
+        NSDate Created { get; }
+
+        // -(nullable NSDate*) expires;
+        [NullAllowed, Export("expires")]
+        NSDate Expires { get; }
+
+        // -(nullable NSDate*) activated;
+        [NullAllowed, Export("activated")]
+        NSDate Activated { get; }
+
+        // -(nullable NSDate*) updated;
+        [NullAllowed, Export("updated")]
+        NSDate Updated { get; }
+
+        // -(nullable NSDate*) ended;
+        [NullAllowed, Export("ended")]
+        NSDate Ended { get; }
     }
 
     // @interface CBIOTouch : NSObject
@@ -217,6 +269,10 @@ namespace Cobrowse.IO.iOS
         [Abstract]
         [Export("cobrowseSessionDidEnd:")]
         void SessionDidEnd(Session session);
+
+        // @optional -(void) cobrowseSessionMetricsDidUpdate: (nonnull CBIOSession*) session;
+        [Export("cobrowseSessionMetricsDidUpdate:")]
+        void SessionMetricsDidUpdate(Session session);
 
         // @optional -(void)cobrowseSessionDidLoad:(CBIOSession * _Nonnull)session;
         [Export("cobrowseSessionDidLoad:")]
@@ -327,9 +383,29 @@ namespace Cobrowse.IO.iOS
         [Export("registration", ArgumentSemantic.Assign)]
         bool Registration { get; set; }
 
-        // @property NSArray<NSString *> * _Nonnull capabilities;
+        // @property (nonnull) NSArray<NSString*>* webviewRedactedViews;
         [Export("webviewRedactedViews", ArgumentSemantic.Assign)]
         string[] WebViewRedactedViews { get; set; }
+
+        //-(void) setWebviewRedactedViews:(nonnull NSArray<NSString*>*) webviewRedactedViews forDomain:(nonnull NSString*);
+        [Export("setWebviewRedactedViews:forDomain:")]
+        void SetWebViewRedactedViews(string[] webviewRedactedViews, string forDomain);
+
+        //-(nonnull NSArray<NSString*>*) webviewRedactedViews: (nonnull NSString*);
+        [Export("webviewRedactedViews:")]
+        string[] GetWebViewRedactedViews(string forDomain);
+
+        // @property (nonnull) NSArray<NSString*>* webviewUnredactedViews;
+        [Export("webviewUnredactedViews", ArgumentSemantic.Assign)]
+        string[] WebViewUnredactedViews { get; set; }
+
+        //-(void) setWebviewUnredactedViews:(nonnull NSArray<NSString*>*) webviewUnredactedViews forDomain:(nonnull NSString*) domain;
+        [Export("setWebviewUnredactedViews:forDomain:")]
+        void SetWebViewUnredactedViews(string[] webviewUnredactedViews, string forDomain);
+
+        //-(nonnull NSArray<NSString*>*) webviewUnredactedViews:(nonnull NSString*) domain;
+        [Export("webviewUnredactedViews:")]
+        string[] GetWebViewUnredactedViews(string forDomain);
 
         [Wrap("WeakDelegate")]
         [NullAllowed]

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Runtime;
+using Cobrowse.IO;
 using Cobrowse.IO.Android;
 using JError = Java.Lang.Error;
 using NativeCobrowseIO = Cobrowse.IO.Android.CobrowseIO;
 using NativeRemoteControlState = Cobrowse.IO.Android.RemoteControlState;
 using NativeFullDeviceState = Cobrowse.IO.Android.FullDeviceState;
+using NativeSessionEndedReason = Cobrowse.IO.Android.SessionEndedReason;
 
 namespace Cobrowse.IO
 {
@@ -28,47 +31,41 @@ namespace Cobrowse.IO
                 : null;
         }
 
-        /// <summary>
-        /// Gets the session's code.
-        /// </summary>
+        /// <inheritdoc/>
         public string? Code => _platformSession.Code;
 
-        /// <summary>
-        /// Gets the session's state.
-        /// </summary>
+        /// <inheritdoc/>
         public string State => _platformSession.State;
 
-        /// <summary>
-        /// Gets a value indicating if the session running, frames are streaming to the agent.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsActive => _platformSession.IsActive;
 
-        /// <summary>
-        /// Gets a value indicating if waiting for the user to confirm the session.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsAuthorizing => _platformSession.IsAuthorizing;
 
-        /// <summary>
-        /// Gets a value indicating if the ession is over and can no longer be used or edited.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsEnded => _platformSession.IsEnded;
 
-        /// <summary>
-        /// Gets a value indicating if the session has been created but is waiting for agent or user.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsPending => _platformSession.IsPending;
 
-        /// <summary>
-        /// Gets a value indicating if an agent object is available.
-        /// </summary>
+        /// <inheritdoc/>
         public bool HasAgent => _platformSession.HasAgent;
 
-        /// <summary>
-        /// Gets an agent instance.
-        /// </summary>
+        /// <inheritdoc/>
         public IAgent? Agent => _platformSession.Agent != null
             ? new AgentImplementation(_platformSession.Agent)
             : null;
+
+        /// <inheritdoc/>
+        public ISessionMetrics? Metrics
+        {
+            get
+            {
+                var platformMetrics = _platformSession.Metrics;
+                return CobrowseSessionMetricsImplementation.TryCreate(platformMetrics);
+            }
+        }
 
         /// <inheritdoc/>
         public RemoteControlState RemoteControl
@@ -179,9 +176,7 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// Activates the session.
-        /// </summary>
+        /// <inheritdoc/>
         public void Activate(CobrowseCallback? callback)
         {
             _platformSession.Activate((JError e, Session session) =>
@@ -190,9 +185,7 @@ namespace Cobrowse.IO
             });
         }
 
-        /// <summary>
-        /// Ends the session.
-        /// </summary>
+        /// <inheritdoc/>
         public void End(CobrowseCallback? callback)
         {
             _platformSession.End((JError e, Session session) =>
@@ -200,5 +193,62 @@ namespace Cobrowse.IO
                 callback?.Invoke(e, CobrowseSessionImplementation.TryCreate(session));
             });
         }
+
+        /// <inheritdoc/>
+        public IReadOnlyDictionary<string, string> CustomData
+            => _platformSession.CustomData;
+
+        /// <inheritdoc/>
+        public void SetCustomData(
+            IReadOnlyDictionary<string, string> customData,
+            CobrowseCallback? callback)
+        {
+            _platformSession.SetCustomData(customData, (JError e, Session session) =>
+            {
+                callback?.Invoke(e, CobrowseSessionImplementation.TryCreate(session));
+            });
+        }
+
+        /// <inheritdoc/>
+        public SessionEndedReason EndedReason
+        {
+            get
+            {
+                switch (_platformSession.EndedReason)
+                {
+                    case NativeSessionEndedReason.Unknown:
+                        return SessionEndedReason.Unknown;
+                    case NativeSessionEndedReason.DeviceEnded:
+                        return SessionEndedReason.DeviceEnded;
+                    case NativeSessionEndedReason.AgentEnded:
+                        return SessionEndedReason.AgentEnded;
+                    case NativeSessionEndedReason.PendingTimeout:
+                        return SessionEndedReason.PendingTimeout;
+                    case NativeSessionEndedReason.AuthorizingTimeout:
+                        return SessionEndedReason.AuthorizingTimeout;
+                    case NativeSessionEndedReason.ActiveTimeout:
+                        return SessionEndedReason.ActiveTimeout;
+                    case NativeSessionEndedReason.LimitEnforcement:
+                        return SessionEndedReason.LimitEnforcement;
+                    default:
+                        return default;
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        public DateTime? Created => _platformSession.Created.ToDateTime();
+
+        /// <inheritdoc/>
+        public DateTime? Expires => _platformSession.Expires.ToDateTime();
+
+        /// <inheritdoc/>
+        public DateTime? Activated => _platformSession.Activated.ToDateTime();
+
+        /// <inheritdoc/>
+        public DateTime? Updated => _platformSession.Updated.ToDateTime();
+
+        /// <inheritdoc/>
+        public DateTime? Ended => _platformSession.Ended.ToDateTime();
     }
 }
