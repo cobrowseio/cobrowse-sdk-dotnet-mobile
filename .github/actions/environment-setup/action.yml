@@ -25,9 +25,12 @@ runs:
 
     - name: Select Xcode version
       env:
-        XCODE_SELECTED_PATH: "/Applications/Xcode_26.2.app"
+        XCODE_SELECTED_PATH: "/Applications/Xcode_26.0.1.app"
       shell: bash
-      run: sudo xcode-select --switch ${XCODE_SELECTED_PATH}
+      run: |
+        sudo xcode-select --switch ${XCODE_SELECTED_PATH}
+        xcrun simctl list > /dev/null
+        xcrun xcodebuild -downloadPlatform iOS
 
     - name: Warm up Xcode
       shell: bash
@@ -53,4 +56,5 @@ runs:
     - name: Install .NET workloads
       shell: bash
       run: |
-        dotnet workload install maui ios android --version 10.0.200
+        dotnet workload install maui ios android --version 10.0.100
+        dotnet workload list
