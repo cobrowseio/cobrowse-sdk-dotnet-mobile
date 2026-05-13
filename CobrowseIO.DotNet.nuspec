@@ -41,6 +41,11 @@
         <file src="Android/NumbersJava.Android/bin/Release/net10.0-android/NumbersJava.Android.pdb" target="lib\net10.0-android36.0" />
         <file src="Android/NumbersJava.Android/bin/Release/net10.0-android/NumbersJava.Android.xml" target="lib\net10.0-android36.0" />
 
+        <file src="Android/DataUtilities.Android/bin/Release/net10.0-android/DataUtilities.Android.aar" target="lib\net10.0-android36.0" />
+        <file src="Android/DataUtilities.Android/bin/Release/net10.0-android/DataUtilities.Android.dll" target="lib\net10.0-android36.0" />
+        <file src="Android/DataUtilities.Android/bin/Release/net10.0-android/DataUtilities.Android.pdb" target="lib\net10.0-android36.0" />
+        <file src="Android/DataUtilities.Android/bin/Release/net10.0-android/DataUtilities.Android.xml" target="lib\net10.0-android36.0" />
+
         <file src="Android/CborJava.Android/bin/Release/net10.0-android/CborJava.Android.aar" target="lib\net10.0-android36.0" />
         <file src="Android/CborJava.Android/bin/Release/net10.0-android/CborJava.Android.dll" target="lib\net10.0-android36.0" />
         <file src="Android/CborJava.Android/bin/Release/net10.0-android/CborJava.Android.pdb" target="lib\net10.0-android36.0" />
