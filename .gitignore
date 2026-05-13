@@ -416,5 +416,5 @@ tools/**
 # Google Classyshark files
 classyshark*.properties
 
-# file caches language service data
+# C# Dev Kit
 *.lscache
