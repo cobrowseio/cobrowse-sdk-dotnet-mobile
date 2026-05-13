@@ -7,13 +7,13 @@
     <Title>CborJava.Android</Title>
     <RootNamespace>CborJava.Android</RootNamespace>
     <Description>https://github.com/peteroupc/CBOR-Java</Description>
-    <Version>4.0.1.0</Version>
+    <Version>4.5.4.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <AndroidEmbeddedJavaLibrary Include="Jars\cbor-4.0.1.jar" />
+    <AndroidEmbeddedJavaLibrary Include="Jars\cbor-4.5.4.jar" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidJavaSource Include="Jars\cbor-4.0.1-sources.jar">
+    <AndroidJavaSource Include="Jars\cbor-4.5.4-sources.jar">
       <Bind></Bind>
     </AndroidJavaSource>
   </ItemGroup>

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiSample", "Sample\MauiSa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiSample.iOS.BroadcastUploadExtension", "Sample\MauiSample.iOS.BroadcastUploadExtension\MauiSample.iOS.BroadcastUploadExtension.csproj", "{CC69912F-6B51-4BBD-9DEE-D59F4BFE5467}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUtilities.Android", "Android\DataUtilities.Android\DataUtilities.Android.csproj", "{2C87DAF0-0A24-4988-80BC-45B12F1555A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{CC69912F-6B51-4BBD-9DEE-D59F4BFE5467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC69912F-6B51-4BBD-9DEE-D59F4BFE5467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC69912F-6B51-4BBD-9DEE-D59F4BFE5467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C87DAF0-0A24-4988-80BC-45B12F1555A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C87DAF0-0A24-4988-80BC-45B12F1555A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C87DAF0-0A24-4988-80BC-45B12F1555A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C87DAF0-0A24-4988-80BC-45B12F1555A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

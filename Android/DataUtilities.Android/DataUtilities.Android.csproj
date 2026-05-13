@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Title>DataUtilities.Android</Title>
+    <RootNamespace>DataUtilities.Android</RootNamespace>
+    <Description>https://github.com/peteroupc/DataUtilities</Description>
+    <Version>1.1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <AndroidEmbeddedJavaLibrary Include="Jars\datautilities-1.1.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidJavaSource Include="Jars\datautilities-1.1.0-sources.jar">
+      <Bind></Bind>
+    </AndroidJavaSource>
+  </ItemGroup>
+</Project>

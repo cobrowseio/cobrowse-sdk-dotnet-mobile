@@ -58,5 +58,6 @@
   <ItemGroup>
     <ProjectReference Include="..\NumbersJava.Android\NumbersJava.Android.csproj" />
     <ProjectReference Include="..\CborJava.Android\CborJava.Android.csproj" />
+    <ProjectReference Include="..\DataUtilities.Android\DataUtilities.Android.csproj" />
   </ItemGroup>
 </Project>
