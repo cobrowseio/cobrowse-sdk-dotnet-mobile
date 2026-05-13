@@ -27,6 +27,7 @@ jobs:
     - name: Build SDK projects
       run: |
         dotnet build Android/NumbersJava.Android/NumbersJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
+        dotnet build Android/DataUtilities.Android/DataUtilities.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CborJava.Android/CborJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CobrowseIO.Android/CobrowseIO.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj --configuration "Release" --no-dependencies --no-restore
