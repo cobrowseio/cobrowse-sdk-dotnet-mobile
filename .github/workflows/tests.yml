@@ -48,6 +48,7 @@ jobs:
       run: |
         dotnet build Sample/MauiSample/MauiSample.csproj \
           --framework "net10.0-ios" \
+          -p:RuntimeIdentifier=iossimulator-arm64 \
           --configuration "Debug" \
           --no-restore
         dotnet build Sample/MauiSample/MauiSample.csproj \
