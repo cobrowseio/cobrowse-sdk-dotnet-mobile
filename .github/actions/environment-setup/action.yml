@@ -29,6 +29,12 @@ runs:
       shell: bash
       run: |
         sudo xcode-select --switch ${XCODE_SELECTED_PATH}
+
+    # `xcodebuild -downloadPlatform` may fail due to simulator misconfiguration:
+    # https://github.com/actions/runner-images/issues/12758
+    - name: Download the iOS runtime
+      shell: bash
+      run: |
         xcrun simctl list > /dev/null
         xcrun xcodebuild -downloadPlatform iOS
 
@@ -47,12 +53,14 @@ runs:
         xcodebuild -version
         java -version
 
-    - name: Verify the auto-update script
+    - name: Install dotnet-script
       shell: bash
       run: |
         dotnet tool install -g dotnet-script
         dotnet script UpdateSDKs/UpdateSDKs.csx -- help
 
+    # 10.0.100 is the first version of the .NET 10 workloads that supports Xcode 26.
+    # https://github.com/dotnet/macios/releases/tag/dotnet-10.0.1xx-xcode26.0-11017.0
     - name: Install .NET workloads
       shell: bash
       run: |
