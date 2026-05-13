@@ -48,8 +48,10 @@ jobs:
       run: |
         dotnet build Sample/MauiSample/MauiSample.csproj \
           --framework "net10.0-ios" \
-          -p:RuntimeIdentifier=iossimulator-arm64 \
           --configuration "Debug" \
+          -p:RuntimeIdentifier=iossimulator-arm64 \
+          -p:CodesignKey= \
+          -p:CodesignProvision= \
           --no-restore
         dotnet build Sample/MauiSample/MauiSample.csproj \
           --framework "net10.0-android36.0" \
