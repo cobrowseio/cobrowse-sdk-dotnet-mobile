@@ -43,3 +43,14 @@ runs:
         dotnet --version
         xcodebuild -version
         java -version
+
+    - name: Verify the auto-update script
+      shell: bash
+      run: |
+        dotnet tool install -g dotnet-script
+        dotnet script UpdateSDKs/UpdateSDKs.csx -- help
+
+    - name: Install .NET workloads
+      shell: bash
+      run: |
+        dotnet workload install maui ios android --version 10.0.200

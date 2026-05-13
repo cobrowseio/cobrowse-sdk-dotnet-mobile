@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   update-native-sdk:
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 30
     steps:
     - name: Checkout repository
@@ -36,19 +36,11 @@ jobs:
     - name: Set up environment
       uses: ./.github/actions/environment-setup
 
-    - name: Install .NET script
-      run: |
-        dotnet tool install -g dotnet-script
-
     - name: Update native SDK
       run: |
         git submodule update --init --recursive
         git submodule foreach --recursive 'git fetch --tags'
         dotnet script UpdateSDKs/UpdateSDKs.csx -- "${{ github.event.inputs.platform }}" "${{ github.event.inputs.cobrowse_sdk_version }}"
-
-    - name: Install .NET workloads
-      run: |
-        sudo dotnet workload restore
 
     - name: Restore NuGet packages
       run: |

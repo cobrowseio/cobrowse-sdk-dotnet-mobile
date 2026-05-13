@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-15
+    runs-on: macos-26
 
     steps:
     - name: Checkout repository
@@ -19,15 +19,6 @@ jobs:
 
     - name: Set up environment
       uses: ./.github/actions/environment-setup
-
-    - name: Verify that the auto-update script is valid
-      run: |
-        dotnet tool install -g dotnet-script
-        dotnet script UpdateSDKs/UpdateSDKs.csx -- help
-
-    - name: Install .NET workloads
-      run: |
-        sudo dotnet workload restore
 
     - name: Restore NuGet packages
       run: |
