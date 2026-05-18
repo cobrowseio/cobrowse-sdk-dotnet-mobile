@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v5.1.0...v5.2.0) (2026-05-18)
+
+
+### Features
+
+* update Cobrowse Android SDK to 3.13.0 ([0548bbc](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/0548bbcb49338d6ee849b827d53107c8c97d8e47))
+* update Cobrowse Android SDK to 3.13.1 ([e12a90c](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/e12a90cea23bdc63bd04d3c9237e68c766095bf1))
+* update Cobrowse Android SDK to 3.13.2 ([02bb5aa](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/02bb5aa5473acf559d11658c56aaedd000d63776))
+* update Cobrowse Android SDK to 3.13.3 ([7768752](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/77687525bcac9eff9a28e1b9cdd90ea4c8e5baeb))
+* update Cobrowse Android SDK to 3.13.4 ([1d95fcb](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/1d95fcb6c3ea65cfd191908b0105339a4bfa56d6))
+* update Cobrowse iOS SDK to 3.13.10 ([6840881](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/68408818dadb71f7b0deaf3d5c2149160bcd9241))
+* update Cobrowse iOS SDK to 3.13.5 ([0f9e480](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/0f9e4800f2c1ed3a61ab30c8d25855dc7e2c6be2))
+* update Cobrowse iOS SDK to 3.13.7 ([baef147](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/baef147353121244669fb09decd5b4f5909e680c))
+* update Cobrowse iOS SDK to 3.13.9 ([207b9ab](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/207b9aba908212bba630a24e8e1e43992c1231af))
+* update Cobrowse iOS SDK to 3.14.0 ([e400b5c](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/e400b5cace57551ee1c9384d7ac46ca355759344))
+* use .NET 10 and Xcode 26 ([#146](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/issues/146)) ([5fa5db0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/commit/5fa5db0002128190c65d02e54c0d0d8c5644efb6))
+
 ## [5.1.0](https://github.com/cobrowseio/cobrowse-sdk-dotnet-mobile/compare/v5.0.0...v5.1.0) (2025-12-16)
 
 
