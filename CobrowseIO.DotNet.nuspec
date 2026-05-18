@@ -62,7 +62,7 @@
 
         <!-- iOS-specific files -->
         <file src="iOS/CobrowseIO.iOS/bin/Release/net10.0-ios/Cobrowse.IO.iOS.dll" target="lib\net10.0-ios26.0"/>
-        <file src="iOS/CobrowseIO.iOS/bin/Release/net10.0-ios/Cobrowse.IO.iOS.pdb" target="lib\net10.0-ios25.0"/>
+        <file src="iOS/CobrowseIO.iOS/bin/Release/net10.0-ios/Cobrowse.IO.iOS.pdb" target="lib\net10.0-ios26.0"/>
         <file src="iOS/CobrowseIO.iOS/bin/Release/net10.0-ios/Cobrowse.IO.iOS.resources.zip" target="lib\net10.0-ios26.0"/>
 
         <file src="SDK/CobrowseIO/bin/Release/net10.0-ios/Cobrowse.IO.dll" target="lib\net10.0-ios26.0"/>
