@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-15
+    runs-on: macos-26
 
     steps:
     - name: Checkout repository
@@ -20,10 +20,6 @@ jobs:
     - name: Set up environment
       uses: ./.github/actions/environment-setup
 
-    - name: Install .NET workloads
-      run: |
-        sudo dotnet workload restore
-
     - name: Restore NuGet packages
       run: |
         dotnet restore CobrowseIO.sln
@@ -31,6 +27,7 @@ jobs:
     - name: Build SDK projects
       run: |
         dotnet build Android/NumbersJava.Android/NumbersJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
+        dotnet build Android/DataUtilities.Android/DataUtilities.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CborJava.Android/CborJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CobrowseIO.Android/CobrowseIO.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj --configuration "Release" --no-dependencies --no-restore
@@ -47,3 +44,17 @@ jobs:
           SDK/CobrowseIO/bin/Release/CobrowseIO.DotNet.*.nupkg
         retention-days: 7
         if-no-files-found: error
+
+    - name: Build the sample app
+      run: |
+        dotnet build Sample/MauiSample/MauiSample.csproj \
+          --framework "net10.0-ios" \
+          --configuration "Debug" \
+          -p:RuntimeIdentifier=iossimulator-arm64 \
+          -p:EnableCodeSigning=false \
+          -p:CodesignRequireProvisioningProfile=false \
+          --no-restore
+        dotnet build Sample/MauiSample/MauiSample.csproj \
+          --framework "net10.0-android36.0" \
+          --configuration "Debug" \
+          --no-restore

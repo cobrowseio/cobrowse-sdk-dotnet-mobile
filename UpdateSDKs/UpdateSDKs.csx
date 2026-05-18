@@ -23,8 +23,14 @@ if (Args == null || Args.Count == 0)
     Console.WriteLine("Usage: dotnet script UpdateSDKs.csx -- <platform:ios|android> [x.y.z]");
     throw new ArgumentNullException(nameof(Args));
 }
+string arg = Args[0].ToString().ToLower();
+if (arg == "help")
+{
+    Console.WriteLine("Usage: dotnet script UpdateSDKs.csx -- <platform:ios|android> [x.y.z]");
+    return;
+}
 
-string platform = Args[0].ToString().ToLower();
+string platform = arg;
 Version version = Version.TryParse(Args.Skip(1).FirstOrDefault(), out Version parsed)
     ? parsed
     : null;

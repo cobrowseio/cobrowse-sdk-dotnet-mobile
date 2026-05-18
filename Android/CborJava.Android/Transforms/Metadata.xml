@@ -8,6 +8,7 @@
   -->
     <attr path="/api/package[@name='com.upokecenter.cbor']" name="managedName">CborJava</attr>
     <attr path="/api/package[@name='com.upokecenter.util']" name="managedName">CborJava.Util</attr>
-    <attr path="/api/package[@name='com.upokecenter.cbor']/class[@name='CBORObject']/method[@name='compareTo']/parameter[@name='other']" name="managedType">Java.Lang.Object</attr>
-    <attr path="/api/package[@name='com.upokecenter.cbor']/class[@name='CBORNumber']/method[@name='compareTo']/parameter[@name='other']" name="managedType">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.upokecenter.cbor']/class[@name='CBORNumber']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='long']]/parameter[@name='other']" name="managedType">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.upokecenter.cbor']/class[@name='CBORObject']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='com.upokecenter.cbor.CBORObject']]/parameter[@name='other']" name="managedType">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.upokecenter.cbor']/class[@name='CBORDateConverter']/method[@name='ToCBORObject' and count(parameter)=1 and parameter[1][@type='java.util.Date']]/parameter[@name='obj']" name="managedType">Java.Lang.Object</attr>
 </metadata>

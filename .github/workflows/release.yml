@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-15
+    runs-on: macos-26
 
     steps:
     - name: Checkout repository
@@ -19,10 +19,6 @@ jobs:
     - name: Set up environment
       uses: ./.github/actions/environment-setup
 
-    - name: Install .NET workloads
-      run: |
-        sudo dotnet workload restore
-
     - name: Restore NuGet packages
       run: |
         dotnet restore CobrowseIO.sln
@@ -30,6 +26,7 @@ jobs:
     - name: Build SDK projects
       run: |
         dotnet build Android/NumbersJava.Android/NumbersJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
+        dotnet build Android/DataUtilities.Android/DataUtilities.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CborJava.Android/CborJava.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build Android/CobrowseIO.Android/CobrowseIO.Android.csproj --configuration "Release" --no-dependencies --no-restore
         dotnet build iOS/CobrowseIO.iOS/CobrowseIO.iOS.csproj --configuration "Release" --no-dependencies --no-restore
